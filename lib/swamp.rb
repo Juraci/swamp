@@ -1,1 +1,2 @@
-require 'swamp/initializer'
+require 'swamp/interface'
+require 'swamp/wrapper'

@@ -17,7 +17,7 @@ When /^swamp scans that url$/ do
   swamp.scan(@url)
 end
 
-Then /^swamp should output the following interface$/ do |string|
+Then /^swamp should output the following code snippets?$/ do |string|
   output.messages.should include(string)
 end
 
@@ -32,10 +32,15 @@ class Output
   end
 end
 
-def swamp
-  @swamp ||= Swamp::Initializer.new(output)
-end
 
 def output
   @output ||= Output.new
+end
+
+def wrapper
+  @wrapper ||= Swamp::Wrapper.new
+end
+
+def swamp
+  @swamp ||= Swamp::Interface.new(output, wrapper)
 end

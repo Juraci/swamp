@@ -4,4 +4,11 @@ require 'swamp'
 
 swamp = Swamp::Initializer.new(STDOUT)
 swamp.run
-swamp.scan('')
+
+while input = gets.chomp
+  if input == 'exit'
+    exit
+  end
+  swamp.scan(input)
+end
+
