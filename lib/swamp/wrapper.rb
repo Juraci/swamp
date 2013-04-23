@@ -14,6 +14,14 @@ module Swamp
     end
 
     def scan
+      snippets = []
+      fields.each do | field |
+        snippets << "def type_#{field}(input)\n  source.fill_in(\"#{field}\", with: input)\nend"
+      end
+      snippets
+    end
+
+    def fields
       elements = []
       all('input').map do |element|
         elements << element['name']

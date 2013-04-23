@@ -18,7 +18,6 @@ module Swamp
       present(snippets)
     end
 
-
     def present(snippets)
       snippets.each do |snippet|
         @output.puts(snippet)
