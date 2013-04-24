@@ -20,7 +20,7 @@ module Swamp
 
     def present(snippets)
       snippets.each do |snippet|
-        @output.puts(snippet)
+        @output.puts(snippet) unless snippet == nil
       end
     end
   end

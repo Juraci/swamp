@@ -1,13 +1,5 @@
 module Swamp
-  class Wrapper
-
-    require 'capybara'
-
-    include Capybara::DSL
-
-    def initialize
-      setup_capybara
-    end
+  class Wrapper < Base
 
     def explore(url)
       visit url
@@ -24,28 +16,19 @@ module Swamp
     def fields
       elements = []
       all('input').map do |element|
-        elements << element['name']
+        if element.visible? and has_name?(element) and valid_type?(element)
+          elements << element['name']
+        end
       end
       elements
     end
 
-    private
-    def setup_capybara
-      Capybara.register_driver :firefox do |app|
-        Capybara::Selenium::Driver.new(app, :browser => :firefox)
-      end
+    def has_name?(element)
+      element['name'] != "" ? true : false
+    end
 
-      Capybara.run_server = false
-      Capybara.default_selector = :css
-      Capybara.default_driver = :selenium
-      Capybara.default_wait_time = 60
-
-      Capybara.configure do |config|
-        config.match = :one
-        config.exact_options = true
-        config.ignore_hidden_elements = true
-        config.visible_text_only = true
-      end
+    def valid_type?(element)
+      element['type'] != "radio" and element['type'] != "checkbox" ? true : false
     end
   end
 end

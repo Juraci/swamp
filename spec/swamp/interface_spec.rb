@@ -24,11 +24,22 @@ module Swamp
         interface.scan("fakepage.com")
       end
 
-      it "sends the code snippets of the scanned page to the output" do
-        wrapper.stub(:scan).and_return(["code_snippet"])
-        output.should_receive(:puts).with("code_snippet")
-        interface.scan("fakepage.com")
+      context "when the returned value is a code_snippet" do
+        it "sends the code snippets of the scanned page to the output" do
+          wrapper.stub(:scan).and_return(["code_snippet"])
+          output.should_receive(:puts).with("code_snippet")
+          interface.scan("fakepage.com")
+        end
       end
+
+      context "when the returned value is nil" do
+        it "sends nothing to the output" do
+          wrapper.stub(:scan).and_return([nil])
+          output.should_not_receive(:puts)
+          interface.scan("fakepage.com")
+        end
+      end
+
     end
   end
 end
