@@ -16,3 +16,13 @@ Feature: user scans a page
         source.fill_in("username", with: input)
       end
       """
+
+  Scenario: User scans a page that contains a checkbox
+    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/checkbox.html"
+    When swamp scans that url
+    Then swamp should not output any snippet
+
+  Scenario: User scans a page that contains a radio
+    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/radio.html"
+    When swamp scans that url
+    Then swamp should not output any snippet

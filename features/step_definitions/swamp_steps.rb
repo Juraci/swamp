@@ -21,6 +21,12 @@ Then /^swamp should output the following code snippets?$/ do |string|
   output.messages.should include(string)
 end
 
+Then /^swamp should not output any snippet$/ do
+  prompt_message = "Enter the url for the page to be scanned:"
+  output.messages.length.should == 1
+  output.messages.should include(prompt_message)
+end
+
 
 class Output
   def messages
@@ -31,7 +37,6 @@ class Output
     messages << message
   end
 end
-
 
 def output
   @output ||= Output.new
