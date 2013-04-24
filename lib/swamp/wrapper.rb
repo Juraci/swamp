@@ -12,9 +12,13 @@ module Swamp
     def scan
       snippets = []
       @fields.get.each do | field |
-        snippets << "def type_#{field}(input)\n  source.fill_in(\"#{field}\", with: input)\nend"
+        snippets << "def type_#{format(field)}(input)\n  source.fill_in(\"#{field}\", with: input)\nend"
       end
       snippets
+    end
+
+    def format(name)
+      name.gsub("-","_").gsub(" ","_")
     end
   end
 end

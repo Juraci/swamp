@@ -23,6 +23,20 @@ module  Swamp
           fields.stub(:get).and_return(["username", "password"])
           wrapper.scan.should == ["def type_username(input)\n  source.fill_in(\"username\", with: input)\nend", "def type_password(input)\n  source.fill_in(\"password\", with: input)\nend"]
         end
+
+        context "when the method name has dashes" do
+          it "replace the dashes with unsderscore" do
+            fields.stub(:get).and_return(["user-name"])
+            wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"user-name\", with: input)\nend"]
+          end
+        end
+
+        context "when the method name has white spaces" do
+          it "replace the white spaces with unsderscore" do
+            fields.stub(:get).and_return(["user name"])
+            wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"user name\", with: input)\nend"]
+          end
+        end
       end
 
       context "when no elements were found" do
