@@ -2,7 +2,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'swamp'
 
-wrapper = Swamp::Wrapper.new
+fields = Swamp::Fields.new
+wrapper = Swamp::Wrapper.new(fields)
 swamp = Swamp::Interface.new(STDOUT, wrapper)
 swamp.run
 

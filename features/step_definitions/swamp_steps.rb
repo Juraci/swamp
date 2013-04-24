@@ -37,8 +37,12 @@ def output
   @output ||= Output.new
 end
 
+def fields
+  @fields ||= Swamp::Fields.new
+end
+
 def wrapper
-  @wrapper ||= Swamp::Wrapper.new
+  @wrapper ||= Swamp::Wrapper.new(fields)
 end
 
 def swamp

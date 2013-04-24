@@ -39,7 +39,6 @@ module Swamp
           interface.scan("fakepage.com")
         end
       end
-
     end
   end
 end
