@@ -1,8 +1,9 @@
 module Swamp
   class Wrapper < Base
 
-    def initialize(fields)
+    def initialize(fields, buttons)
       @fields = fields
+      @buttons = buttons
     end
 
     def explore(url)
@@ -14,6 +15,9 @@ module Swamp
       @fields.get.each do | field |
         snippets << "def type_#{format(field)}(input)\n  source.fill_in(\"#{field}\", with: input)\nend"
       end
+      @buttons.get.each do | button |
+        snippets << "def #{format(button)}\n  source.click_button(\"#{button}\")\nend"
+      end
       snippets
     end
 
@@ -24,7 +28,7 @@ module Swamp
       if result != nil
         name = name.chomp(result[:symbols])
       end
-      name
+      name.downcase
     end
   end
 end

@@ -42,12 +42,16 @@ def output
   @output ||= Output.new
 end
 
+def buttons
+  @buttons ||= Swamp::Buttons.new
+end
+
 def fields
   @fields ||= Swamp::Fields.new
 end
 
 def wrapper
-  @wrapper ||= Swamp::Wrapper.new(fields)
+  @wrapper ||= Swamp::Wrapper.new(fields, buttons)
 end
 
 def swamp
