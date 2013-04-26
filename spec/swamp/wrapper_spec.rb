@@ -37,6 +37,13 @@ module  Swamp
             wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"user name\", with: input)\nend"]
           end
         end
+
+        context "when the method name has underscore in the end" do
+          it "removes the underscores from the end" do
+            fields.stub(:get).and_return(["user_name_"])
+            wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"user_name_\", with: input)\nend"]
+          end
+        end
       end
 
       context "when no elements were found" do

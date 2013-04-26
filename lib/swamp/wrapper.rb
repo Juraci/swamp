@@ -19,6 +19,12 @@ module Swamp
 
     def format(name)
       name.gsub("-","_").gsub(" ","_")
+      name = name.gsub("-","_").gsub(" ","_")
+      result = name.match(/\w+?(?<symbols>[_]+\Z)/)
+      if result != nil
+        name = name.chomp(result[:symbols])
+      end
+      name
     end
   end
 end
