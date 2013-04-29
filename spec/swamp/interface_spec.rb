@@ -24,7 +24,7 @@ module Swamp
         interface.scan("fakepage.com")
       end
 
-      context "when the returned value is a code_snippet" do
+      context "when the returned value is a code snippet" do
         it "sends the code snippets of the scanned page to the output" do
           wrapper.stub(:scan).and_return(["code_snippet"])
           output.should_receive(:puts).with("code_snippet")
