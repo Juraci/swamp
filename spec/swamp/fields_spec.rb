@@ -11,7 +11,7 @@ module Swamp
     end
 
     context "when the input element is visible has the name attribute and its type is valid" do
-      it "returns the element name in the array" do
+      it "returns the element's name in the array" do
         element = {'name' => "username", 'type' => "text"}
         element.stub(:visible?).and_return(true)
         fields.stub(:all).with('input').and_return([element])
