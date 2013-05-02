@@ -14,10 +14,10 @@ module Swamp
       snippets = []
       formatter = Swamp::Formatter.new
       @fields.get.each do | field |
-        snippets << "def type_#{formatter.format(field)}(input)\n  source.fill_in(\"#{field}\", with: input)\nend"
+        snippets << "def type_#{formatter.format(field.name)}(input)\n  source.fill_in(\"#{field.selector}\", with: input)\nend"
       end
       @buttons.get.each do | button |
-        snippets << "def #{formatter.format(button)}\n  source.click_button(\"#{button}\")\nend"
+        snippets << "def #{formatter.format(button.name)}\n  source.click_button(\"#{button.selector}\")\nend"
       end
       snippets
     end

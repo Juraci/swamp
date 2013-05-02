@@ -12,22 +12,26 @@ module Swamp
     end
 
     context "when the button element has text" do
-      it "returns the element's text in the array" do
+      it "returns the element in the array using the text as both the name and the selector" do
         element = {'id' => "u_0_2"}
         element.stub(:text).and_return("Sign Up")
         element.stub(:visible?).and_return(true)
         buttons.stub(:all).with('button').and_return([element])
-        buttons.get.should == ["Sign Up"]
+        buttons.get.should have(1).button
+        buttons.get.each.first.name.should == "Sign Up"
+        buttons.get.each.first.selector.should == "Sign Up"
       end
     end
 
     context "when the button element has no text" do
-      it "returns an empty array" do
-        element = {'id' => "u_0_2"}
+      it "returns the element in the array using the id as both the name and the selector" do
+        element = {'id' => "search-button"}
         element.stub(:text).and_return("")
         element.stub(:visible?).and_return(true)
         buttons.stub(:all).with('button').and_return([element])
-        buttons.get.should == []
+        buttons.get.should have(1).button
+        buttons.get.each.first.name.should == "search-button"
+        buttons.get.each.first.selector.should == "search-button"
       end
     end
 

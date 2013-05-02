@@ -27,6 +27,16 @@ Feature: user scans a page
       end
       """
 
+  Scenario: User scans a page that contains a button that doesn't has text
+    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button_without_text.html"
+    When swamp scans that url
+    Then swamp should output the following code snippet
+      """
+      def search_button
+        source.click_button("search-button")
+      end
+      """
+
   Scenario: User scans a page that contains a checkbox
     Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/checkbox.html"
     When swamp scans that url

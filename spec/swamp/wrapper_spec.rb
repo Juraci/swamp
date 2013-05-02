@@ -15,19 +15,30 @@ module Swamp
 
     describe "#scan" do
       it "delegates the parsing of the fields to the fields class" do
-        fields.should_receive(:get).and_return(["username"])
+        field = Swamp::Field.new("username", "username")
+        fields.should_receive(:get).and_return([field])
         wrapper.scan
       end
 
       it "delegates the parsing of the buttons to the buttons class" do
-        buttons.should_receive(:get).and_return(["log_in"])
+        button = Swamp::Button.new("log_in", "log_in")
+        buttons.should_receive(:get).and_return([button])
         wrapper.scan
       end
 
-      context "when elements were found" do
+      context "when fields elements were found" do
         it "returns an array of formatted code snippets" do
-          fields.stub(:get).and_return(["User-name", "User Password"])
-          wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"User-name\", with: input)\nend", "def type_user_password(input)\n  source.fill_in(\"User Password\", with: input)\nend"]
+          field = Swamp::Field.new("User-name", "User-name")
+          fields.stub(:get).and_return([field])
+          wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"User-name\", with: input)\nend"]
+        end
+      end
+
+      context "when buttons elements were found" do
+        it "returns an array of formatted code snippets" do
+          button = Swamp::Button.new("Sign Up", "Sign Up")
+          buttons.stub(:get).and_return([button])
+          wrapper.scan.should == ["def sign_up\n  source.click_button(\"Sign Up\")\nend"]
         end
       end
 

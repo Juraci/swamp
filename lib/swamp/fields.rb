@@ -4,7 +4,7 @@ module Swamp
       elements = []
       all('input').map do |element|
         if element.visible? and has_name?(element) and valid_type?(element)
-          elements << element['name']
+          elements << Swamp::Field.new(element['name'], element['name'])
         end
       end
       elements
