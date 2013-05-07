@@ -14,4 +14,3 @@ while input = gets.chomp
   end
   swamp.scan(input)
 end
-
