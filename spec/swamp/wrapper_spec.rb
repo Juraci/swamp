@@ -40,13 +40,13 @@ module Swamp
           buttons.stub(:get).and_return([button])
           wrapper.scan.should == ["def sign_up\n  source.click_button(\"Sign Up\")\nend"]
         end
-      end
 
-      context "when the method's name is nil" do
-        it "returns only the selector in the array" do
-          button = Swamp::Button.new(nil, "$ 9.90 Buy")
-          buttons.stub(:get).and_return([button])
-          wrapper.scan.should == ["source.click_button(\"$ 9.90 Buy\")"]
+        context "when the method's name is nil" do
+          it "returns only the selector in the array" do
+            button = Swamp::Button.new(nil, "$ 9.90 Buy")
+            buttons.stub(:get).and_return([button])
+            wrapper.scan.should == ["source.click_button(\"$ 9.90 Buy\")"]
+          end
         end
       end
 
