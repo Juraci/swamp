@@ -7,7 +7,7 @@ Feature: user scans fields in a page
   Background: swamp is running
     Given that swamp is already running
 
-  Scenario: User scans a page that contains a field
+  Scenario: A standard field
     Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/field.html"
     When swamp scans that url
     Then swamp should output the following code snippet
@@ -17,12 +17,12 @@ Feature: user scans fields in a page
       end
       """
 
-  Scenario: User scans a page that contains a checkbox
+  Scenario: A checkbox
     Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/checkbox.html"
     When swamp scans that url
     Then swamp should not output any snippet
 
-  Scenario: User scans a page that contains a radio
+  Scenario: A radio
     Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/radio.html"
     When swamp scans that url
     Then swamp should not output any snippet

@@ -42,6 +42,14 @@ module Swamp
         end
       end
 
+      context "when the method's name is nil" do
+        it "returns only the selector in the array" do
+          button = Swamp::Button.new(nil, "$ 9.90 Buy")
+          buttons.stub(:get).and_return([button])
+          wrapper.scan.should == ["source.click_button(\"$ 9.90 Buy\")"]
+        end
+      end
+
       context "when no elements were found" do
         it "returns an empty array" do
           fields.stub(:get).and_return([])

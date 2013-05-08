@@ -7,7 +7,7 @@ Feature: user scans buttons in a page
   Background: swamp is running
     Given that swamp is already running
 
-  Scenario: User scans a page that contains a button
+  Scenario: A button that has text
     Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button.html"
     When swamp scans that url
     Then swamp should output the following code snippet
@@ -17,7 +17,7 @@ Feature: user scans buttons in a page
       end
       """
 
-  Scenario: User scans a page that contains a button that doesn't has text
+  Scenario: A button that doesn't has text
     Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button_without_text.html"
     When swamp scans that url
     Then swamp should output the following code snippet
@@ -25,4 +25,12 @@ Feature: user scans buttons in a page
       def search_button
         source.click_button("search-button")
       end
+      """
+
+  Scenario: A button whose the text is not eligible to be the methods name
+    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button_with_bad_text.html"
+    When swamp scans that url
+    Then swamp should output the following code snippet
+      """
+      source.click_button("R$ 9,90 Comprar")
       """

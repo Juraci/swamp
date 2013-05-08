@@ -21,6 +21,18 @@ module Swamp
         buttons.get.each.first.name.should == "Sign Up"
         buttons.get.each.first.selector.should == "Sign Up"
       end
+
+      context "when there is no id and the text is not eligible to be the methods name" do
+        it "returns the element in the array using the text the selector and nil for the method's name" do
+          element = {'id' => ""}
+          element.stub(:text).and_return("$ 9.90 Buy")
+          element.stub(:visible?).and_return(true)
+          buttons.stub(:all).with('button').and_return([element])
+          buttons.get.should have(1).button
+          buttons.get.each.first.name.should be_nil
+          buttons.get.each.first.selector.should == "$ 9.90 Buy"
+        end
+      end
     end
 
     context "when the button element has no text" do
