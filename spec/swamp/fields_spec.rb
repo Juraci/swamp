@@ -10,14 +10,38 @@ module Swamp
       fields.get
     end
 
-    context "when the input element is visible has the name attribute and its type is valid" do
-      it "returns the element in the array" do
-        element = {'name' => "username", 'type' => "text"}
-        element.stub(:visible?).and_return(true)
-        fields.stub(:all).with('input').and_return([element])
-        fields.get.should have(1).field
-        fields.get.first.name.should == "username"
-        fields.get.first.selector.should == "username"
+    context "when the input element is visible and has the name attribute" do
+      context "when its type is text" do
+        it "returns the element in the array" do
+          element = {'name' => "username", 'type' => "text"}
+          element.stub(:visible?).and_return(true)
+          fields.stub(:all).with('input').and_return([element])
+          fields.get.should have(1).field
+          fields.get.first.name.should == "username"
+          fields.get.first.selector.should == "username"
+        end
+      end
+
+      context "when its type is email" do
+        it "returns the element in the array" do
+          element = {'name' => "useremail", 'type' => "email"}
+          element.stub(:visible?).and_return(true)
+          fields.stub(:all).with('input').and_return([element])
+          fields.get.should have(1).field
+          fields.get.first.name.should == "useremail"
+          fields.get.first.selector.should == "useremail"
+        end
+      end
+
+      context "when its type is password" do
+        it "returns the element in the array" do
+          element = {'name' => "password", 'type' => "password"}
+          element.stub(:visible?).and_return(true)
+          fields.stub(:all).with('input').and_return([element])
+          fields.get.should have(1).field
+          fields.get.first.name.should == "password"
+          fields.get.first.selector.should == "password"
+        end
       end
     end
 
