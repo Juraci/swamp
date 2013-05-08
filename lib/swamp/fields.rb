@@ -15,7 +15,7 @@ module Swamp
     end
 
     def valid_type?(element)
-      element['type'] == "text" ? true : false
+      element['type'] != "radio" and element['type'] != "checkbox" and element['type'] != "submit" ? true : false
     end
   end
 end
