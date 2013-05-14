@@ -11,19 +11,27 @@ module Swamp
     end
 
     def scan
-      snippets = []
-      formatter = Swamp::Formatter.new
-      @fields.get.each do | field |
-        snippets << "def type_#{formatter.format(field.name)}(input)\n  source.fill_in(\"#{field.selector}\", with: input)\nend"
+      snippets_for_fields + snippets_for_buttons
+    end
+
+    def snippets_for_fields
+      @fields.get.map do | field |
+        "def type_#{formatter.format(field.name)}(input)\n  source.fill_in(\"#{field.selector}\", with: input)\nend"
       end
-      @buttons.get.each do | button |
+    end
+
+    def snippets_for_buttons
+      @buttons.get.map do | button |
         if button.name != nil
-          snippets << "def #{formatter.format(button.name)}\n  source.click_button(\"#{button.selector}\")\nend"
+          "def #{formatter.format(button.name)}\n  source.click_button(\"#{button.selector}\")\nend"
         else
-          snippets << "source.click_button(\"#{button.selector}\")"
+          "source.click_button(\"#{button.selector}\")"
         end
       end
-      snippets
+    end
+
+    def formatter
+      @formatter ||= Swamp::Formatter.new
     end
   end
 end

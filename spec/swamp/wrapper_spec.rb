@@ -13,46 +13,86 @@ module Swamp
       end
     end
 
-    describe "#scan" do
+    describe "#snippets_for_fields" do
       it "delegates the parsing of the fields to the fields class" do
         field = Swamp::Field.new("username", "username")
         fields.should_receive(:get).and_return([field])
-        wrapper.scan
-      end
-
-      it "delegates the parsing of the buttons to the buttons class" do
-        button = Swamp::Button.new("log_in", "log_in")
-        buttons.should_receive(:get).and_return([button])
-        wrapper.scan
+        wrapper.snippets_for_fields
       end
 
       context "when fields elements were found" do
         it "returns an array of formatted code snippets" do
           field = Swamp::Field.new("User-name", "User-name")
           fields.stub(:get).and_return([field])
-          wrapper.scan.should == ["def type_user_name(input)\n  source.fill_in(\"User-name\", with: input)\nend"]
+          wrapper.snippets_for_fields.should == ["def type_user_name(input)\n  source.fill_in(\"User-name\", with: input)\nend"]
         end
+      end
+
+      context "when no field elements were found" do
+        it "returns an empty array" do
+          fields.stub(:get).and_return([])
+          wrapper.snippets_for_fields.should == []
+        end
+      end
+    end
+
+    describe "#snippets_for_buttons" do
+      it "delegates the parsing of the buttons to the buttons class" do
+        button = Swamp::Button.new("log_in", "log_in")
+        buttons.should_receive(:get).and_return([button])
+        wrapper.snippets_for_buttons
       end
 
       context "when buttons elements were found" do
         it "returns an array of formatted code snippets" do
           button = Swamp::Button.new("Sign Up", "Sign Up")
           buttons.stub(:get).and_return([button])
-          wrapper.scan.should == ["def sign_up\n  source.click_button(\"Sign Up\")\nend"]
+          wrapper.snippets_for_buttons.should == ["def sign_up\n  source.click_button(\"Sign Up\")\nend"]
         end
 
         context "when the method's name is nil" do
           it "returns only the selector in the array" do
             button = Swamp::Button.new(nil, "$ 9.90 Buy")
             buttons.stub(:get).and_return([button])
-            wrapper.scan.should == ["source.click_button(\"$ 9.90 Buy\")"]
+            wrapper.snippets_for_buttons.should == ["source.click_button(\"$ 9.90 Buy\")"]
           end
+        end
+
+      context "when no button elements were found" do
+        it "returns an empty array" do
+          buttons.stub(:get).and_return([])
+          wrapper.snippets_for_buttons.should == []
+        end
+      end
+    end
+    end
+
+    describe "#scan" do
+      context "when elements were found" do
+        let(:field) { Swamp::Field.new("username", "username") }
+        let(:button) { Swamp::Button.new("log_in", "log_in") }
+
+        it "returns an array of formatted code snippets" do
+          fields.stub(:get).and_return([field])
+          buttons.stub(:get).and_return([button])
+          wrapper.scan.should == ["def type_username(input)\n  source.fill_in(\"username\", with: input)\nend", "def log_in\n  source.click_button(\"log_in\")\nend"]
+        end
+      end
+
+      context "when only one kind of element is found" do
+        let(:field) { Swamp::Field.new("username", "username") }
+
+        it "returns an array of formatted code snippets for this element only" do
+          fields.stub(:get).and_return([field])
+          buttons.stub(:get).and_return([])
+          wrapper.scan.should == ["def type_username(input)\n  source.fill_in(\"username\", with: input)\nend"]
         end
       end
 
       context "when no elements were found" do
         it "returns an empty array" do
           fields.stub(:get).and_return([])
+          buttons.stub(:get).and_return([])
           wrapper.scan.should == []
         end
       end
