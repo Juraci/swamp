@@ -20,7 +20,7 @@ module Swamp
       Capybara.default_wait_time = 60
 
       Capybara.configure do |config|
-        config.match = :one
+        config.match = :smart
         config.exact_options = true
         config.ignore_hidden_elements = true
         config.visible_text_only = true
