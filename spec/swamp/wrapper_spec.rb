@@ -58,13 +58,13 @@ module Swamp
           end
         end
 
-      context "when no button elements were found" do
-        it "returns an empty array" do
-          buttons.stub(:get).and_return([])
-          wrapper.snippets_for_buttons.should == []
+        context "when no button elements were found" do
+          it "returns an empty array" do
+            buttons.stub(:get).and_return([])
+            wrapper.snippets_for_buttons.should == []
+          end
         end
       end
-    end
     end
 
     describe "#scan" do
