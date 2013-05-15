@@ -1,9 +1,9 @@
 require 'spec_helper'
 module Swamp
   describe Wrapper do
-    let(:fields) { fields = double('fields').as_null_object }
-    let(:buttons) { buttons = double('buttons').as_null_object }
-    let(:wrapper) { wrapper = Swamp::Wrapper.new(fields, buttons) }
+    let(:fields) { double('fields').as_null_object }
+    let(:buttons) { double('buttons').as_null_object }
+    let(:wrapper) { Swamp::Wrapper.new(fields, buttons) }
 
     describe "#explore" do
       it "fires up the browser to a given url" do
