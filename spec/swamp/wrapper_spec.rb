@@ -49,20 +49,12 @@ module Swamp
           buttons.stub(:get).and_return([button])
           wrapper.snippets_for_buttons.should == ["def sign_up\n  source.click_button(\"Sign Up\")\nend"]
         end
+      end
 
-        context "when the method's name is nil" do
-          it "returns only the selector in the array" do
-            button = Swamp::Button.new(nil, "$ 9.90 Buy")
-            buttons.stub(:get).and_return([button])
-            wrapper.snippets_for_buttons.should == ["source.click_button(\"$ 9.90 Buy\")"]
-          end
-        end
-
-        context "when no button elements were found" do
-          it "returns an empty array" do
-            buttons.stub(:get).and_return([])
-            wrapper.snippets_for_buttons.should == []
-          end
+      context "when no button elements were found" do
+        it "returns an empty array" do
+          buttons.stub(:get).and_return([])
+          wrapper.snippets_for_buttons.should == []
         end
       end
     end
