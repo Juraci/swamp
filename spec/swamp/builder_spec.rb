@@ -6,7 +6,8 @@ module Swamp
         let(:type) { :field }
         context "when the name and the selector are present" do
           it "returns the method's snippet" do
-            builder = Swamp::Builder.new(type, "User-Name", "User-Name")
+            element = Swamp::Field.new("User-Name", "User-Name")
+            builder = Swamp::Builder.new(element)
             builder.build_snippet.should == "def type_user_name(input)\n  source.fill_in(\"User-Name\", with: input)\nend"
           end
         end
@@ -16,14 +17,16 @@ module Swamp
         let(:type) { :button }
         context "when the name and the selector are present" do
           it "returns the method's snippet" do
-            builder = Swamp::Builder.new(type, "Log_in", "Log_in")
+            element = Swamp::Button.new("Log_in", "Log_in")
+            builder = Swamp::Builder.new(element)
             builder.build_snippet.should == "def log_in\n  source.click_button(\"Log_in\")\nend"
           end
         end
 
         context "when just the selector is present" do
           it "returns just the selector snippet" do
-            builder = Swamp::Builder.new(type, nil, "$ 9.90 Buy")
+            element = Swamp::Button.new(nil, "$ 9.90 Buy")
+            builder = Swamp::Builder.new(element)
             builder.build_snippet.should == "source.click_button(\"$ 9.90 Buy\")"
           end
         end

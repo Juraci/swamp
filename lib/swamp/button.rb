@@ -12,5 +12,17 @@ module Swamp
     def selector
       @selector
     end
+
+    def method_signature
+      formatter.format(@name)
+    end
+
+    def accessor
+      "click_button(\"#{@selector}\")"
+    end
+
+    def formatter
+      @formatter ||= Swamp::Formatter.new
+    end
   end
 end
