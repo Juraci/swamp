@@ -6,7 +6,7 @@ module Swamp
       @selector = selector
     end
 
-    def build_method
+    def build_snippet
       if @type == :field
         "#{method_definition}#{field_signature}\n#{identation}#{prefix}#{field_selector}\n#{method_end}"
       elsif @type == :button

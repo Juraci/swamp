@@ -14,11 +14,11 @@ module Swamp
     end
 
     def snippets_for_fields
-      @fields.get.map { | field | Swamp::Builder.new(:field, field.name, field.selector).build_method }
+      @fields.get.map { | field | Swamp::Builder.new(:field, field.name, field.selector).build_snippet }
     end
 
     def snippets_for_buttons
-      @buttons.get.map { | button | Swamp::Builder.new(:button, button.name, button.selector).build_method }
+      @buttons.get.map { | button | Swamp::Builder.new(:button, button.name, button.selector).build_snippet }
     end
   end
 end

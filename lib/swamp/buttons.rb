@@ -17,7 +17,7 @@ module Swamp
     end
 
     def has_valid_text?(element)
-      element.text.length >= 3 and not has_punctuation?(element) ? true : false
+      element.text.length >= 3 and not has_punctuation?(element)
     end
 
     def has_punctuation?(element)
