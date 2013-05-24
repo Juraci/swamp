@@ -1,6 +1,7 @@
 require 'swamp/interface'
 require 'swamp/base'
 require 'swamp/wrapper'
+require 'swamp/element'
 require 'swamp/fields'
 require 'swamp/field'
 require 'swamp/buttons'
