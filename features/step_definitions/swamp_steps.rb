@@ -43,15 +43,19 @@ def output
 end
 
 def buttons
-  @buttons ||= Swamp::Buttons.new
+  Swamp::Buttons.new
 end
 
 def fields
-  @fields ||= Swamp::Fields.new
+  Swamp::Fields.new
+end
+
+def input_buttons
+  Swamp::InputButtons.new
 end
 
 def wrapper
-  @wrapper ||= Swamp::Wrapper.new(fields, buttons)
+  Swamp::Wrapper.new(fields, buttons, input_buttons)
 end
 
 def swamp

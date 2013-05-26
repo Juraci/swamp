@@ -4,7 +4,8 @@ require 'swamp'
 
 fields = Swamp::Fields.new
 buttons = Swamp::Buttons.new
-wrapper = Swamp::Wrapper.new(fields, buttons)
+input_buttons = Swamp::InputButtons.new
+wrapper = Swamp::Wrapper.new(fields, buttons, input_buttons)
 swamp = Swamp::Interface.new(STDOUT, wrapper)
 swamp.run
 

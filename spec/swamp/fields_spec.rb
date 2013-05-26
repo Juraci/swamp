@@ -1,7 +1,7 @@
 require 'spec_helper'
 module Swamp
   describe Fields do
-    let(:fields) { fields = Swamp::Fields.new }
+    let(:fields) { Swamp::Fields.new }
 
     it "delegates to capybara the responsibility to get the fields" do
       element = {'name' => "username", 'type' => "text"}
