@@ -24,7 +24,12 @@ module Swamp
     end
 
     context "when the element is not visible" do
-      it "returns an empty array"
+      it "returns an empty array" do
+        element = {'value' => "Log In", 'id' => "u_0_b"}
+        element.stub(:visible?).and_return(false)
+        input_buttons.stub(:all).with('input[type="submit"]').and_return([element])
+        input_buttons.get.should == []
+      end
     end
   end
 end
