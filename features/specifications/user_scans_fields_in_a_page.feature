@@ -13,6 +13,16 @@ Feature: user scans fields in a page
     Then swamp should output the following code snippet
       """
       def type_username(input)
+        source.fill_in("id_username", with: input)
+      end
+      """
+
+  Scenario: A field without the id attribute
+    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/field_without_id.html"
+    When swamp scans that url
+    Then swamp should output the following code snippet
+      """
+      def type_username(input)
         source.fill_in("username", with: input)
       end
       """
