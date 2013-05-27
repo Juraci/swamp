@@ -31,6 +31,15 @@ module Swamp
           formatter.format(name).should == "sign_up"
         end
       end
+
+      describe "#format_class" do
+        context "when the class has white spaces" do
+          it "replaces the white spaces with dots" do
+            class_name = "button g-button g-button-submit"
+            formatter.format_class(class_name).should == "button.g-button.g-button-submit"
+          end
+        end
+      end
     end
   end
 end

@@ -9,6 +9,15 @@ module Swamp
       @name = downcase_name
     end
 
+    def format_class(name)
+      @name = name
+      @name = replace_white_spaces_with_dots
+    end
+
+    def replace_white_spaces_with_dots
+      @name.gsub(" ",".")
+    end
+
     def replace_dashes
       @name.gsub("-","_")
     end

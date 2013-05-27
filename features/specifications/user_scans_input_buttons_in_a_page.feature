@@ -16,3 +16,13 @@ Feature: user scans submits in a page
         source.find(:css, "input#u_0_b").click
       end
       """
+
+  Scenario: A submit that has no id
+    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/input_submit_without_id.html"
+    When swamp scans that url
+    Then swamp should output the following code snippet
+      """
+      def continue
+        source.find(:css, "input.button.g-button.g-button-submit[value='Continue']").click
+      end
+      """
