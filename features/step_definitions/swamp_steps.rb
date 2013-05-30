@@ -13,6 +13,11 @@ Given /^user types the url "(.*?)"$/  do |url|
   @url = url
 end
 
+Given /^user types the file "(.*?)"$/  do |file|
+  path = File.join(File.dirname(__FILE__), '../support/page_examples/', file)
+  @url = "file://#{path}"
+end
+
 When /^swamp scans that url$/ do
   swamp.scan(@url)
 end

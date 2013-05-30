@@ -8,7 +8,7 @@ Feature: user scans submits in a page
     Given that swamp is already running
 
   Scenario: A submit that has value and id
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/input_submit.html"
+    Given user types the file "input_submit.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
@@ -18,7 +18,7 @@ Feature: user scans submits in a page
       """
 
   Scenario: A submit that has no id
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/input_submit_without_id.html"
+    Given user types the file "input_submit_without_id.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
