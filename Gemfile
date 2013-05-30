@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rake'
-gem 'cucumber'
-gem 'rspec'
-gem 'capybara'
-gem 'selenium-webdriver'
+# Specify your gem's dependencies in fooo.gemspec
+gemspec
+
+# gem 'rake'
+
 gem 'json', '~> 1.7.7'
 gem 'pry'
 gem 'pry-nav'
