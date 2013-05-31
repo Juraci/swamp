@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/juniorz/swamp.png?branch=master)](https://travis-ci.org/juniorz/swamp)
+
 swamp
 =====
 

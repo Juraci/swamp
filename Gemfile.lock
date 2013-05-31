@@ -72,5 +72,4 @@ DEPENDENCIES
   pry-nav
   rake
   rspec
-  selenium-webdriver
   swamp!
