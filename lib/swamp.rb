@@ -1,3 +1,8 @@
+require 'rubygems'
+require 'bundler'
+Bundler.setup(:default)
+
+require 'swamp/version'
 require 'swamp/interface'
 require 'swamp/base'
 require 'swamp/wrapper'
@@ -10,3 +15,6 @@ require 'swamp/builder'
 require 'swamp/formatter'
 require 'swamp/input_buttons'
 require 'swamp/input_button'
+
+module Swamp
+end

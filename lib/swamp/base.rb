@@ -1,8 +1,7 @@
+require 'capybara'
+
 module Swamp
   class Base
-
-    require 'capybara'
-
     include Capybara::DSL
 
     def initialize
