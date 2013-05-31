@@ -8,7 +8,7 @@ Feature: user scans fields in a page
     Given that swamp is already running
 
   Scenario: A standard field
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/field.html"
+    Given user types the file "field.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
@@ -18,7 +18,7 @@ Feature: user scans fields in a page
       """
 
   Scenario: A field without the id attribute
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/field_without_id.html"
+    Given user types the file "field_without_id.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
@@ -28,11 +28,11 @@ Feature: user scans fields in a page
       """
 
   Scenario: A checkbox
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/checkbox.html"
+    Given user types the file "checkbox.html"
     When swamp scans that url
     Then swamp should not output any snippet
 
   Scenario: A radio
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/radio.html"
+    Given user types the file "radio.html"
     When swamp scans that url
     Then swamp should not output any snippet

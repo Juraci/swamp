@@ -8,7 +8,7 @@ Feature: user scans buttons in a page
     Given that swamp is already running
 
   Scenario: A button that has text
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button.html"
+    Given user types the file "button.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
@@ -18,7 +18,7 @@ Feature: user scans buttons in a page
       """
 
   Scenario: A button that doesn't has text
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button_without_text.html"
+    Given user types the file "button_without_text.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
@@ -28,7 +28,7 @@ Feature: user scans buttons in a page
       """
 
   Scenario: A button whose the text is not eligible to be the methods name
-    Given user types the url "file:///home/juraci/projects/swamp/features/support/page_examples/button_with_bad_text.html"
+    Given user types the file "button_with_bad_text.html"
     When swamp scans that url
     Then swamp should output the following code snippet
       """
