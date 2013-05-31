@@ -6,10 +6,10 @@ require 'swamp/version'
 Gem::Specification.new do |spec|
   spec.name          = "swamp"
   spec.version       = Swamp::VERSION
-  spec.authors       = ["Juraci Neto"]
-  spec.email         = ["jneto@thoughtworks.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.authors       = ["Juraci de Lima Vieira Neto"]
+  spec.email         = ["juraci.vieira@gmail.com"]
+  spec.description   = "Automatically generates the methods and selectors to help on faster page-object creation using capybara"
+  spec.summary       = "Swamp, where capybaras belong"
   spec.homepage      = ""
   spec.license       = "MIT"
 
