@@ -8,8 +8,8 @@ Feature: user scans submits in a page
     Given that swamp is already running
 
   Scenario: A submit that has value and id
-    Given user types the file "input_submit.html"
-    When swamp scans that url
+    Given I enter the url for this page: "input_submit.html"
+    When swamp scans that page
     Then swamp should output the following code snippet
       """
       def log_in
@@ -18,8 +18,8 @@ Feature: user scans submits in a page
       """
 
   Scenario: A submit that has no id
-    Given user types the file "input_submit_without_id.html"
-    When swamp scans that url
+    Given I enter the url for this page: "input_submit_without_id.html"
+    When swamp scans that page
     Then swamp should output the following code snippet
       """
       def continue

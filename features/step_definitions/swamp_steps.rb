@@ -9,16 +9,12 @@ Then /^I should see "(.*?)"$/  do |outcome|
   output.messages.should include(outcome)
 end
 
-Given /^user types the url "(.*?)"$/  do |url|
-  @url = url
-end
-
-Given /^user types the file "(.*?)"$/  do |file|
-  path = File.join(File.dirname(__FILE__), '../support/page_examples/', file)
+Given /^I enter the url for this page: "(\w+\.html)"$/  do |page|
+  path = File.join(File.dirname(__FILE__), '../support/page_examples/', page)
   @url = "file://#{path}"
 end
 
-When /^swamp scans that url$/ do
+When /^swamp scans that page$/ do
   swamp.scan(@url)
 end
 

@@ -8,8 +8,8 @@ Feature: user scans buttons in a page
     Given that swamp is already running
 
   Scenario: A button that has text
-    Given user types the file "button.html"
-    When swamp scans that url
+    Given I enter the url for this page: "button.html"
+    When swamp scans that page
     Then swamp should output the following code snippet
       """
       def sign_up
@@ -18,8 +18,8 @@ Feature: user scans buttons in a page
       """
 
   Scenario: A button that doesn't has text
-    Given user types the file "button_without_text.html"
-    When swamp scans that url
+    Given I enter the url for this page: "button_without_text.html"
+    When swamp scans that page
     Then swamp should output the following code snippet
       """
       def search_button
@@ -28,8 +28,8 @@ Feature: user scans buttons in a page
       """
 
   Scenario: A button whose the text is not eligible to be the methods name
-    Given user types the file "button_with_bad_text.html"
-    When swamp scans that url
+    Given I enter the url for this page: "button_with_bad_text.html"
+    When swamp scans that page
     Then swamp should output the following code snippet
       """
       source.click_button("R$ 9,90 Comprar")
