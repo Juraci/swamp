@@ -3,6 +3,7 @@ PATH
   specs:
     swamp (0.0.1)
       capybara
+      selenium-webdriver
 
 GEM
   remote: https://rubygems.org/
@@ -28,7 +29,7 @@ GEM
       multi_json (~> 1.3)
     json (1.7.7)
     method_source (0.8.1)
-    mime-types (1.22)
+    mime-types (1.23)
     multi_json (1.7.2)
     nokogiri (1.5.9)
     pry (0.9.12)
