@@ -15,7 +15,7 @@ module Swamp
     end
 
     describe "#snippets_for_fields" do
-      context "when fields elements were found" do
+      context "when field elements were found" do
         it "returns an array of formatted code snippets" do
           field = Swamp::Field.new("User-name", "User-name")
           fields.stub(:get).and_return([field])
@@ -25,7 +25,7 @@ module Swamp
     end
 
     describe "#snippets_for_buttons" do
-      context "when buttons elements were found" do
+      context "when button elements were found" do
         it "returns an array of formatted code snippets" do
           button = Swamp::Button.new("Sign Up", "Sign Up")
           buttons.stub(:get).and_return([button])
