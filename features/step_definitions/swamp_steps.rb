@@ -28,6 +28,23 @@ Then /^swamp should not output any snippet$/ do
   output.messages.should include(prompt_message)
 end
 
+Given /^that swamp already have scanned a page$/ do
+  swamp.run
+  path = File.join(File.dirname(__FILE__), '../support/page_examples/', "button.html")
+  @url = "file://#{path}"
+  swamp.scan(@url)
+  output.messages.should include("def sign_up\n  source.click_button(\"Sign Up\")\nend")
+end
+
+When /^I attempt to hit enter at the terminal$/ do
+  swamp.scan("\n")
+end
+
+Then /^swamp should scan the current page$/ do
+  output.messages.length.should == 3
+  output.messages.last.should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
+end
+
 
 class Output
   def messages

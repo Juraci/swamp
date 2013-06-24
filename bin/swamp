@@ -9,8 +9,8 @@ wrapper = Swamp::Wrapper.new(fields, buttons, input_buttons)
 swamp = Swamp::Interface.new(STDOUT, wrapper)
 swamp.run
 
-while input = gets.chomp
-  if input == 'exit'
+while input = gets
+  if input.chomp == 'exit'
     exit
   end
   swamp.scan(input)
