@@ -24,6 +24,14 @@ module Swamp
         interface.scan("http://www.fakepage.com")
       end
 
+      context "when it scans a valid url" do
+        it "sends the code snippets of the scanned page to the output" do
+          wrapper.stub(:scan).and_return(["code_snippet"])
+          output.should_receive(:puts).with("code_snippet")
+          interface.scan("http://www.fakepage.com")
+        end
+      end
+
       context "when it scans an invalid url" do
         it "sends a warning message to the output" do
           output.should_receive(:puts).with("Please enter a valid url!")
@@ -34,6 +42,7 @@ module Swamp
       context "when it receives an enter keystroke" do
         context "when no page was scanned yet" do
           it "sends a warning message to the output" do
+            wrapper.stub(:page_visited).and_return(false)
             output.should_receive(:puts).with("Please enter a valid url!")
             interface.scan("\n")
           end
@@ -41,29 +50,14 @@ module Swamp
 
         context "when a page was already scanned" do
           it "scans the current page and sends the code snippets to the output" do
+            wrapper.stub(:page_visited).and_return(true)
             wrapper.stub(:scan).and_return(["code_snippet"])
             output.should_receive(:puts).with("code_snippet")
-            interface.page_scanned = true
             interface.scan("\n")
           end
         end
       end
 
-      context "when it scans a valid url" do
-        it "sends the code snippets of the scanned page to the output" do
-          wrapper.stub(:scan).and_return(["code_snippet"])
-          output.should_receive(:puts).with("code_snippet")
-          interface.scan("http://www.fakepage.com")
-        end
-      end
-
-      context "when the returned value is nil" do
-        it "sends nothing to the output" do
-          wrapper.stub(:scan).and_return([nil])
-          output.should_not_receive(:puts)
-          interface.scan("http://www.fakepage.com")
-        end
-      end
     end
   end
 end

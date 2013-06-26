@@ -4,10 +4,16 @@ module Swamp
       @fields = fields
       @buttons = buttons
       @input_buttons = input_buttons
+      @page_visited = false
     end
 
+    attr_accessor :page_visited
+
     def explore(url)
-      visit url
+      if !page_visited
+        visit url
+        @page_visited = true
+      end
     end
 
     def scan

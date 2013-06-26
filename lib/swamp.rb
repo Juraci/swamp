@@ -4,6 +4,7 @@ Bundler.setup(:default)
 
 require 'swamp/version'
 require 'swamp/interface'
+require 'swamp/evaluator'
 require 'swamp/base'
 require 'swamp/wrapper'
 require 'swamp/element'

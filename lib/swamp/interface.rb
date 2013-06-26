@@ -1,46 +1,33 @@
 module Swamp
-	class Interface
+  class Interface
 
-		MESSAGE = 'Enter the url for the page to be scanned:'
-		WARNING_MESSAGE = 'Please enter a valid url!'
-    attr_accessor :page_scanned
+    WELCOME_MESSAGE = ['Enter the url for the page to be scanned:']
+    INVALID_REQUEST_MESSAGE = ['Please enter a valid url!']
 
-		def initialize(output, wrapper)
-			@output = output
-			@wrapper = wrapper
-      @page_scanned = false
-		end
-
-		def run
-			@output.puts(MESSAGE)
-		end
-
-		def scan(url)
-			if is_valid_url?(url)
-				@wrapper.explore(url)
-				snippets = @wrapper.scan
-				present(snippets)
-        @page_scanned = true
-      elsif is_enter?(url) and @page_scanned
-				snippets = @wrapper.scan
-				present(snippets)
-			else
-				@output.puts(WARNING_MESSAGE)
-			end
-		end
-
-    def is_enter?(input)
-      input == "\n"
+    def initialize(output, wrapper)
+      @output = output
+      @wrapper = wrapper
     end
 
-		def is_valid_url?(url)
-			url.match(/^(http|https|file):\/\/.*$/i) ? true : false
-		end
+    def run
+      present(WELCOME_MESSAGE)
+    end
 
-		def present(snippets)
-			snippets.each do |snippet|
-				@output.puts(snippet) unless snippet == nil
-			end
-		end
-	end
+    def scan(input)
+      evaluator = Swamp::Evaluator.new(input, @wrapper)
+      messages = (evaluator.valid_url? or evaluator.refresh_command?) ? request(input) : INVALID_REQUEST_MESSAGE
+      present messages
+    end
+
+    def request(input)
+      @wrapper.explore(input)
+      @wrapper.scan
+    end
+
+    def present(messages)
+      messages.each do |message|
+        @output.puts(message)
+      end
+    end
+  end
 end
