@@ -18,7 +18,7 @@ module Swamp
           input_buttons.stub(:all).with('input[type="submit"]').and_return([element])
           input_buttons.get.should have(1).input_submit
           input_buttons.get.first.name.should == "Log In"
-          input_buttons.get.first.selector.should == "input#u_0_b"
+          input_buttons.get.first.selector.should == "#u_0_b"
         end
       end
     end

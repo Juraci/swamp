@@ -13,7 +13,7 @@ Feature: user scans submits in a page
     Then swamp should output the following code snippet
       """
       def log_in
-        source.find(:css, "input#u_0_b").click
+        source.find(:css, "#u_0_b").click
       end
       """
 

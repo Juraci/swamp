@@ -6,7 +6,7 @@ module Swamp
         if element.visible?
           if has_value?(element)
             if has_id?(element)
-              elements << Swamp::InputButton.new(element["value"], "input##{element["id"]}")
+              elements << Swamp::InputButton.new(element["value"], "##{element["id"]}")
             elsif has_class?(element)
               elements << Swamp::InputButton.new(element["value"], "input.#{formatter.format_class(element["class"])}[value='#{element["value"]}']")
             end
