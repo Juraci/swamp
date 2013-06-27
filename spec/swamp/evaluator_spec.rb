@@ -1,7 +1,6 @@
 require 'spec_helper'
 module Swamp
   describe Evaluator do
-
     let(:wrapper) { wrapper = double('wrapper').as_null_object }
 
     describe "#valid_url?" do

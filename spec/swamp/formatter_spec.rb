@@ -12,7 +12,7 @@ module Swamp
       end
 
       context "when the name has white spaces" do
-        it "replaces the white spaces with unsderscores" do
+        it "replaces the white spaces with underscores" do
           name = "user name"
           formatter.format(name).should == "user_name"
         end
@@ -32,12 +32,26 @@ module Swamp
         end
       end
 
-      describe "#format_class" do
-        context "when the class has white spaces" do
-          it "replaces the white spaces with dots" do
-            class_name = "button g-button g-button-submit"
-            formatter.format_class(class_name).should == "button.g-button.g-button-submit"
-          end
+      context "when the name has parentheses" do
+        it "replace the parentheses with underscores" do
+          name = "user_name(title)"
+          formatter.format(name).should == "user_name_title"
+        end
+      end
+
+      context "when the name has brackets" do
+        it "replace the brackets with underscores" do
+          name = "user_name[title]"
+          formatter.format(name).should == "user_name_title"
+        end
+      end
+    end
+
+    describe "#format_class" do
+      context "when the class has white spaces" do
+        it "replaces the white spaces with dots" do
+          class_name = "button g-button g-button-submit"
+          formatter.format_class(class_name).should == "button.g-button.g-button-submit"
         end
       end
     end

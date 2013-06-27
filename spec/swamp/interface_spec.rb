@@ -1,7 +1,6 @@
 require 'spec_helper'
 module Swamp
   describe Interface do
-
     let(:output) { output = double('output').as_null_object }
     let(:wrapper) { wrapper = double('wrapper').as_null_object }
     let(:interface) { interface = Swamp::Interface.new(output, wrapper) }

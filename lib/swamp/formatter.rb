@@ -5,6 +5,8 @@ module Swamp
       @name = name
       @name = replace_dashes
       @name = remove_white_spaces
+      @name = replace_parentheses
+      @name = replace_brackets
       @name = remove_suffix_symbols
       @name = downcase_name
     end
@@ -24,6 +26,14 @@ module Swamp
 
     def remove_white_spaces
       @name.gsub(" ", "_")
+    end
+
+    def replace_parentheses
+      @name.gsub("(", "_").gsub(")", "_")
+    end
+
+    def replace_brackets
+      @name.gsub("[", "_").gsub("]", "_")
     end
 
     def remove_suffix_symbols
