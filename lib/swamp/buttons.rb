@@ -8,8 +8,8 @@ module Swamp
             elements << Swamp::Button.new(element.text, element.text)
           elsif has_valid_id?(element)
             elements << Swamp::Button.new(element["id"], element["id"])
-          else
-            elements << Swamp::Button.new(nil, element.text)
+          elsif has_valid_value?(element)
+            elements << Swamp::Button.new(element["value"], element["value"])
           end
         end
       end
@@ -17,11 +17,15 @@ module Swamp
     end
 
     def has_valid_text?(element)
-      element.text.length >= 3 and not has_punctuation?(element)
+      element.text.length >= 3 and has_no_punctuation?(element.text)
     end
 
-    def has_punctuation?(element)
-      element.text.match(/[.,]/) ? true : false
+    def has_valid_value?(element)
+      element["value"].length >= 3 and has_no_punctuation?(element["value"])
+    end
+
+    def has_no_punctuation?(string)
+      string.match(/[.,]/) ? false : true
     end
 
     def has_valid_id?(element)

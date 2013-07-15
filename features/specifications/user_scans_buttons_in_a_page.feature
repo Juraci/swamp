@@ -17,7 +17,7 @@ Feature: user scans buttons in a page
       end
       """
 
-  Scenario: A button that doesn't has text
+  Scenario: A button that doesn't has text but has id
     Given I enter the url for this page: "button_without_text.html"
     When swamp scans that page
     Then swamp should output the following code snippet
@@ -27,10 +27,17 @@ Feature: user scans buttons in a page
       end
       """
 
-  Scenario: A button whose the text is not eligible to be the methods name
-    Given I enter the url for this page: "button_with_bad_text.html"
+  Scenario: A button that doesn't has either text or id but has the value attribute
+    Given I enter the url for this page: "button_without_text_without_id_with_value.html"
     When swamp scans that page
     Then swamp should output the following code snippet
       """
-      source.click_button("R$ 9,90 Comprar")
+      def buy_now
+        source.click_button("buy-now")
+      end
       """
+
+  Scenario: A button without text id and value
+    Given I enter the url for this page: "button_without_text_id_and_value.html"
+    When swamp scans that page
+    Then swamp should not output any snippet

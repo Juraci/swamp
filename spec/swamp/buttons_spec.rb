@@ -13,38 +13,69 @@ module Swamp
 
     context "when the element is visible" do
       context "when the button element has text" do
-        it "returns the element in the array using the text as both the name and the selector" do
-          element = {'id' => "u_0_2"}
-          element.stub(:text).and_return("Sign Up")
+        let(:element) { {'id' => "u_0_2"} }
+
+        before(:each) do
           element.stub(:visible?).and_return(true)
+          element.stub(:text).and_return("Sign Up")
           buttons.stub(:all).with('button').and_return([element])
+        end
+
+        it "returns the element in the array using the text as both the name and the selector" do
           buttons.get.should have(1).button
           buttons.get.each.first.name.should == "Sign Up"
           buttons.get.each.first.selector.should == "Sign Up"
         end
-
-        context "when there is no id and the text is not eligible to be the methods name" do
-          it "returns the element in the array using the text the selector and nil for the method's name" do
-            element = {'id' => ""}
-            element.stub(:text).and_return("$ 9.90 Buy")
-            element.stub(:visible?).and_return(true)
-            buttons.stub(:all).with('button').and_return([element])
-            buttons.get.should have(1).button
-            buttons.get.each.first.name.should be_nil
-            buttons.get.each.first.selector.should == "$ 9.90 Buy"
-          end
-        end
       end
 
       context "when the button element has no text" do
-        it "returns the element in the array using the id as both the name and the selector" do
-          element = {'id' => "search-button"}
-          element.stub(:text).and_return("")
-          element.stub(:visible?).and_return(true)
-          buttons.stub(:all).with('button').and_return([element])
-          buttons.get.should have(1).button
-          buttons.get.each.first.name.should == "search-button"
-          buttons.get.each.first.selector.should == "search-button"
+        context "when the button element has id" do
+          let(:element) { {'id' => "search-button"} }
+
+          before(:each) do
+            element.stub(:visible?).and_return(true)
+            element.stub(:text).and_return("")
+            buttons.stub(:all).with('button').and_return([element])
+          end
+
+          it "returns the element in the array using the id as both the name and the selector" do
+            buttons.get.should have(1).button
+            buttons.get.each.first.name.should == "search-button"
+            buttons.get.each.first.selector.should == "search-button"
+          end
+        end
+
+        context "when the button element has no id" do
+          context "when the button element has value" do
+            let(:element) { {'value' => "search-button", 'id' => ""} }
+
+            before(:each) do
+              element.stub(:visible?).and_return(true)
+              element.stub(:text).and_return("")
+              buttons.stub(:all).with('button').and_return([element])
+            end
+
+            it "returns the element in the array using the value as both the name and the selector" do
+              buttons.get.should have(1).button
+              buttons.get.each.first.name.should == "search-button"
+              buttons.get.each.first.selector.should == "search-button"
+            end
+          end
+
+          context "when the button element has no value" do
+            let(:element) { {'value' => "", 'id' => ""} }
+
+            before(:each) do
+              element.stub(:visible?).and_return(true)
+              element.stub(:text).and_return("")
+              buttons.stub(:all).with('button').and_return([element])
+            end
+
+            it "returns an empty array" do
+              buttons.stub(:all).with('button').and_return([element])
+              buttons.get.should == []
+            end
+          end
         end
       end
     end
