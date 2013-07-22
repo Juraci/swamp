@@ -44,38 +44,3 @@ Then /^swamp should scan the current page$/ do
   output.messages.length.should == 3
   output.messages.last.should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
 end
-
-
-class Output
-  def messages
-    @messages ||= []
-  end
-
-  def puts(message)
-    messages << message
-  end
-end
-
-def output
-  @output ||= Output.new
-end
-
-def buttons
-  Swamp::Buttons.new
-end
-
-def fields
-  Swamp::Fields.new
-end
-
-def input_buttons
-  Swamp::InputButtons.new
-end
-
-def wrapper
-  Swamp::Wrapper.new(fields, buttons, input_buttons)
-end
-
-def swamp
-  @swamp ||= Swamp::Interface.new(output, wrapper)
-end
