@@ -1,9 +1,8 @@
 module Swamp
   class Interface
-    require 'colorize'
 
-    WELCOME_MESSAGE = ['Enter the url for the page to be scanned:'.green]
-    INVALID_REQUEST_MESSAGE = ['Please enter a valid url!'.red]
+    WELCOME_MESSAGE = ['Enter the url for the page to be scanned:']
+    INVALID_REQUEST_MESSAGE = ['Please enter a valid url!']
 
     def initialize(output, wrapper)
       @output = output
@@ -16,7 +15,7 @@ module Swamp
 
     def scan(input)
       evaluator = Swamp::Evaluator.new(input, @wrapper)
-      messages = (evaluator.valid_url? or evaluator.refresh_command?) ? request(input).map { |s| s.yellow } : INVALID_REQUEST_MESSAGE
+      messages = (evaluator.valid_url? or evaluator.refresh_command?) ? request(input) : INVALID_REQUEST_MESSAGE
       present messages
     end
 
