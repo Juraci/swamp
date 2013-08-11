@@ -16,6 +16,8 @@ require 'swamp/builder'
 require 'swamp/formatter'
 require 'swamp/input_buttons'
 require 'swamp/input_button'
+require 'swamp/select_boxes'
+require 'swamp/select_box'
 
 module Swamp
 end

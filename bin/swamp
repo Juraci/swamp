@@ -5,7 +5,8 @@ require 'swamp'
 fields = Swamp::Fields.new
 buttons = Swamp::Buttons.new
 input_buttons = Swamp::InputButtons.new
-wrapper = Swamp::Wrapper.new(fields, buttons, input_buttons)
+select_boxes = Swamp::SelectBoxes.new
+wrapper = Swamp::Wrapper.new(fields, buttons, input_buttons, select_boxes)
 swamp = Swamp::Interface.new(STDOUT, wrapper)
 swamp.run
 

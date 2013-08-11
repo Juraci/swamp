@@ -24,8 +24,12 @@ def input_buttons
   Swamp::InputButtons.new
 end
 
+def select_boxes
+  Swamp::SelectBoxes.new
+end
+
 def wrapper
-  Swamp::Wrapper.new(fields, buttons, input_buttons)
+  Swamp::Wrapper.new(fields, buttons, input_buttons, select_boxes)
 end
 
 def swamp

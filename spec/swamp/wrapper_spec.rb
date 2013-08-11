@@ -4,7 +4,8 @@ module Swamp
     let(:fields) { double('fields').as_null_object }
     let(:buttons) { double('buttons').as_null_object }
     let(:input_buttons) { double('input_buttons').as_null_object }
-    let(:wrapper) { Swamp::Wrapper.new(fields, buttons, input_buttons) }
+    let(:select_boxes) { double('select_boxes').as_null_object }
+    let(:wrapper) { Swamp::Wrapper.new(fields, buttons, input_buttons, select_boxes) }
 
     describe "#explore" do
       it "fires up the browser to a given url" do
@@ -44,30 +45,66 @@ module Swamp
       end
     end
 
-    describe "#scan" do
-      context "when elements were found" do
-        let(:field) { Swamp::Field.new("username", "username") }
-        let(:button) { Swamp::Button.new("log_in", "log_in") }
-        let(:input_button) { Swamp::InputButton.new("Log In", "input#u_0_b") }
-
+    describe "#snippets_for_select_boxes" do
+      context "when select box elements were found" do
         it "returns an array of formatted code snippets" do
-          fields.stub(:get).and_return([field])
-          buttons.stub(:get).and_return([button])
-          input_buttons.stub(:get).and_return([input_button])
-          wrapper.scan.should == ["def type_username(input)\n  source.fill_in(\"username\", with: input)\nend",
-                                  "def log_in\n  source.click_button(\"log_in\")\nend",
-                                  "def log_in\n  source.find(:css, \"input#u_0_b\").click\nend"]
+          select_box = Swamp::SelectBox.new("month", "month")
+          select_boxes.stub(:get).and_return([select_box])
+          wrapper.snippets_for_select_boxes.should == ["def select_month(option)\n  source.select(option, :from => \"month\")\nend"]
         end
       end
+    end
 
-      context "when only one kind of element is found" do
+    describe "#scan" do
+      context "when field elements were found" do
         let(:field) { Swamp::Field.new("username", "username") }
 
-        it "returns an array of formatted code snippets for this element only" do
+        it "returns an array of formatted code snippets for fields only" do
           fields.stub(:get).and_return([field])
           buttons.stub(:get).and_return([])
           input_buttons.stub(:get).and_return([])
+          select_boxes.stub(:get).and_return([])
+
           wrapper.scan.should == ["def type_username(input)\n  source.fill_in(\"username\", with: input)\nend"]
+        end
+      end
+
+      context "when button elements were found" do
+        let(:button) { Swamp::Button.new("log_in", "log_in") }
+
+        it "returns an array of formatted code snippets for fields only" do
+          buttons.stub(:get).and_return([button])
+          fields.stub(:get).and_return([])
+          input_buttons.stub(:get).and_return([])
+          select_boxes.stub(:get).and_return([])
+
+          wrapper.scan.should == ["def log_in\n  source.click_button(\"log_in\")\nend"]
+        end
+      end
+
+      context "when input button elements were found" do
+        let(:input_button) { Swamp::InputButton.new("Log In", "input#u_0_b") }
+
+        it "returns an array of formatted code snippets for input buttons only" do
+          buttons.stub(:get).and_return([])
+          fields.stub(:get).and_return([])
+          input_buttons.stub(:get).and_return([input_button])
+          select_boxes.stub(:get).and_return([])
+
+          wrapper.scan.should == ["def log_in\n  source.find(:css, \"input#u_0_b\").click\nend"]
+        end
+      end
+
+      context "when select box elements were found" do
+        let(:select_box) { Swamp::SelectBox.new("month", "month") }
+
+        it "returns an array of formatted code snippets for select boxes only" do
+          buttons.stub(:get).and_return([])
+          fields.stub(:get).and_return([])
+          input_buttons.stub(:get).and_return([])
+          select_boxes.stub(:get).and_return([select_box])
+
+          wrapper.scan.should == ["def select_month(option)\n  source.select(option, :from => \"month\")\nend"]
         end
       end
 
@@ -76,6 +113,8 @@ module Swamp
           fields.stub(:get).and_return([])
           buttons.stub(:get).and_return([])
           input_buttons.stub(:get).and_return([])
+          select_boxes.stub(:get).and_return([])
+
           wrapper.scan.should == []
         end
       end
