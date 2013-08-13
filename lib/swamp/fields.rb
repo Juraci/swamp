@@ -1,5 +1,5 @@
 module Swamp
-  class Fields < Base
+  class Fields < Elements
     def get
       elements = []
       all('input').map do |element|
@@ -12,14 +12,6 @@ module Swamp
         end
       end
       elements
-    end
-
-    def has_id?(element)
-      element['id'] != nil and element['id'] != "" ? true : false
-    end
-
-    def has_name?(element)
-      element['name'] != "" ? true : false
     end
 
     def valid_type?(element)

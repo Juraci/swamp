@@ -1,5 +1,5 @@
 module Swamp
-  class SelectBoxes < Base
+  class SelectBoxes < Elements
     def get
       elements = []
       all('select').map do | element |
@@ -10,14 +10,6 @@ module Swamp
         end
       end
       elements
-    end
-
-    def has_id?(element)
-      element['id'] != nil and element['id'] != "" ? true : false
-    end
-
-    def has_name?(element)
-      element['name'] != nil and element['name'] != "" ? true : false
     end
   end
 end

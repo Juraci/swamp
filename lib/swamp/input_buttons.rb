@@ -1,5 +1,5 @@
 module Swamp
-  class InputButtons < Base
+  class InputButtons < Elements
     def get
       elements = []
       all('input[type="submit"]').map do | element |
@@ -14,22 +14,6 @@ module Swamp
         end
       end
       elements
-    end
-
-    def has_value?(element)
-      element['value'] != nil and element['value'] != "" ? true : false
-    end
-
-    def has_id?(element)
-      element['id'] != nil and element['id'] != "" ? true : false
-    end
-
-    def has_class?(element)
-      element['class'] != nil and element['class'] != "" ? true : false
-    end
-
-    def formatter
-      @formatter ||= Swamp::Formatter.new
     end
   end
 end
