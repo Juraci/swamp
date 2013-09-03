@@ -8,7 +8,7 @@ module Swamp
       @page_visited = false
     end
 
-    attr_accessor :page_visited
+    attr_reader :page_visited
 
     def explore(url)
       if !page_visited
