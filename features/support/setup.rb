@@ -29,7 +29,8 @@ def select_boxes
 end
 
 def wrapper
-  Swamp::Wrapper.new(fields, buttons, input_buttons, select_boxes)
+  meta_collection = [fields, buttons, input_buttons, select_boxes]
+  Swamp::Wrapper.new(meta_collection)
 end
 
 def swamp
