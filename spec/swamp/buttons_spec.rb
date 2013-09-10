@@ -7,7 +7,7 @@ module Swamp
       element = {'id' => "u_0_2"}
       element.stub(:text).and_return("Sign Up")
       element.stub(:visible?).and_return(true)
-      buttons.should_receive(:all).with('button').and_return([element])
+      buttons.page.should_receive(:all).with('button').and_return([element])
       buttons.get
     end
 
@@ -18,7 +18,7 @@ module Swamp
         before(:each) do
           element.stub(:visible?).and_return(true)
           element.stub(:text).and_return("Sign Up")
-          buttons.stub(:all).with('button').and_return([element])
+          buttons.page.stub(:all).with('button').and_return([element])
         end
 
         it "returns the element in the array using the text as both the name and the selector" do
@@ -35,7 +35,7 @@ module Swamp
           before(:each) do
             element.stub(:visible?).and_return(true)
             element.stub(:text).and_return("")
-            buttons.stub(:all).with('button').and_return([element])
+            buttons.page.stub(:all).with('button').and_return([element])
           end
 
           it "returns the element in the array using the id as both the name and the selector" do
@@ -52,7 +52,7 @@ module Swamp
             before(:each) do
               element.stub(:visible?).and_return(true)
               element.stub(:text).and_return("")
-              buttons.stub(:all).with('button').and_return([element])
+              buttons.page.stub(:all).with('button').and_return([element])
             end
 
             it "returns the element in the array using the value as both the name and the selector" do
@@ -68,7 +68,7 @@ module Swamp
             before(:each) do
               element.stub(:visible?).and_return(true)
               element.stub(:text).and_return("")
-              buttons.stub(:all).with('button').and_return([element])
+              buttons.page.stub(:all).with('button').and_return([element])
             end
 
             it "returns an empty array" do
@@ -85,7 +85,7 @@ module Swamp
         element = {'id' => "u_0_2"}
         element.stub(:text).and_return("Sign Up")
         element.stub(:visible?).and_return(false)
-        buttons.stub(:all).with('button').and_return([element])
+        buttons.page.stub(:all).with('button').and_return([element])
         buttons.get.should == []
       end
     end

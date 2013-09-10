@@ -6,7 +6,7 @@ module Swamp
     it "delegates to capybara the responsibility to get the submit elements" do
       element = {'value' => "Log In", 'id' => "u_0_b"}
       element.stub(:visible?).and_return(true)
-      input_buttons.should_receive(:all).with('input[type="submit"]').and_return([element])
+      input_buttons.page.should_receive(:all).with('input[type="submit"]').and_return([element])
       input_buttons.get
     end
 
@@ -16,7 +16,7 @@ module Swamp
 
         before(:each) do
           element.stub(:visible?).and_return(true)
-          input_buttons.stub(:all).with('input[type="submit"]').and_return([element])
+          input_buttons.page.stub(:all).with('input[type="submit"]').and_return([element])
         end
 
         it "returns the element in the array using the value as the name" do
@@ -35,7 +35,7 @@ module Swamp
 
         before(:each) do
           element.stub(:visible?).and_return(true)
-          input_buttons.stub(:all).with('input[type="submit"]').and_return([element])
+          input_buttons.page.stub(:all).with('input[type="submit"]').and_return([element])
         end
 
         it "returns the element in the array using the value as the name" do
@@ -54,7 +54,7 @@ module Swamp
       it "returns an empty array" do
         element = {'value' => "Log In", 'id' => "u_0_b"}
         element.stub(:visible?).and_return(false)
-        input_buttons.stub(:all).with('input[type="submit"]').and_return([element])
+        input_buttons.page.stub(:all).with('input[type="submit"]').and_return([element])
         input_buttons.get.should == []
       end
     end

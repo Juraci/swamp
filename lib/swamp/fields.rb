@@ -2,7 +2,7 @@ module Swamp
   class Fields < Elements
     def get
       elements = []
-      all('input').map do |element|
+      page.all('input').map do |element|
         if element.visible? and has_name?(element) and valid_type?(element)
           if has_id?(element)
             elements << Swamp::Field.new(element['name'], element['id'])

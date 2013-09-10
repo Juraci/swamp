@@ -2,7 +2,7 @@ module Swamp
   class Buttons < Elements
     def get
       elements = []
-      all("button").map do |element|
+      page.all("button").map do |element|
         if element.visible?
           if has_valid_text?(element)
             elements << Swamp::Button.new(element.text, element.text)

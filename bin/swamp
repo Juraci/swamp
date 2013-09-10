@@ -6,7 +6,8 @@ fields = Swamp::Fields.new
 buttons = Swamp::Buttons.new
 input_buttons = Swamp::InputButtons.new
 select_boxes = Swamp::SelectBoxes.new
-meta_collection = [fields, buttons, input_buttons, select_boxes]
+links = Swamp::Links.new
+meta_collection = [fields, buttons, input_buttons, select_boxes, links]
 wrapper = Swamp::Wrapper.new(meta_collection)
 swamp = Swamp::Interface.new(STDOUT, wrapper)
 swamp.run

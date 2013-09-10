@@ -6,7 +6,7 @@ module Swamp
     it "delegates to capybara the responsibility to get the select box elements" do
       element = {'id' => "month", 'name' => "birthday_month"}
       element.stub(:visible?).and_return(true)
-      select_boxes.should_receive(:all).with('select').and_return([element])
+      select_boxes.page.should_receive(:all).with('select').and_return([element])
       select_boxes.get
     end
 
@@ -15,8 +15,8 @@ module Swamp
         let(:element) { {'id' => "month", 'name' => "birthday_month"} }
 
         before(:each) do
-          element.stub(:visible).and_return(true)
-          select_boxes.stub(:all).with('select').and_return([element])
+          element.stub(:visible?).and_return(true)
+          select_boxes.page.stub(:all).with('select').and_return([element])
         end
 
         it "returns the element in the array using the id as the name" do
@@ -34,8 +34,8 @@ module Swamp
         let(:element) { {'name' => "birthday_month"} }
 
         before(:each) do
-          element.stub(:visible).and_return(true)
-          select_boxes.stub(:all).with('select').and_return([element])
+          element.stub(:visible?).and_return(true)
+          select_boxes.page.stub(:all).with('select').and_return([element])
         end
 
         it "returns the element in the array using the name as the name" do
