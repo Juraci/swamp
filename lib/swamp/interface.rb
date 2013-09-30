@@ -24,6 +24,8 @@ module Swamp
       @wrapper.scan
     end
 
+    private
+
     def present(messages)
       messages.each do |message|
         @output.puts(message)
