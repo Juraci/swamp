@@ -24,7 +24,7 @@ end
 
 Then /^swamp should not output any snippet$/ do
   prompt_message = "Enter the url for the page to be scanned:"
-  output.messages.length.should == 1
+  output.should have_at_least(1).messages
   output.messages.should include(prompt_message)
 end
 
@@ -41,6 +41,6 @@ When /^I attempt to hit enter at the terminal$/ do
 end
 
 Then /^swamp should scan the current page$/ do
-  output.messages.length.should == 3
+  output.should have_at_least(3).messages
   output.messages.last.should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
 end

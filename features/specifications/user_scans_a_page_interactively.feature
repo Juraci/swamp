@@ -8,3 +8,4 @@ Feature: user scans a page interactively
     Given that swamp already have scanned a page
     When I attempt to hit enter at the terminal
     Then swamp should scan the current page
+    And I should see "Scanning, please wait..."

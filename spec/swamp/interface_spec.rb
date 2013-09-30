@@ -13,6 +13,11 @@ module Swamp
     end
 
     describe "#scan" do
+      it "warns the user that it is scanning" do
+        output.should_receive(:puts).with("Scanning, please wait...")
+        interface.scan("http://www.fakepage.com")
+      end
+
       it "delegates the responsibility to fire up the browser to the wrapper class" do
         wrapper.should_receive(:explore)
         interface.scan("http://www.fakepage.com")
