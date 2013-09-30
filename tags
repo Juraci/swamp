@@ -1,0 +1,124 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Base	lib/swamp/base.rb	/^  class Base$/;"	c	class:Swamp
+Builder	lib/swamp/builder.rb	/^  class Builder$/;"	c	class:Swamp
+Button	lib/swamp/button.rb	/^  class Button < Element$/;"	c	class:Swamp
+Buttons	lib/swamp/buttons.rb	/^  class Buttons < Elements$/;"	c	class:Swamp
+Element	lib/swamp/element.rb	/^  class Element$/;"	c	class:Swamp
+Elements	lib/swamp/elements.rb	/^  class Elements < Base$/;"	c	class:Swamp
+Evaluator	lib/swamp/evaluator.rb	/^  class Evaluator$/;"	c	class:Swamp
+Field	lib/swamp/field.rb	/^  class Field < Element$/;"	c	class:Swamp
+Fields	lib/swamp/fields.rb	/^  class Fields < Elements$/;"	c	class:Swamp
+Formatter	lib/swamp/formatter.rb	/^  class Formatter$/;"	c	class:Swamp
+InputButton	lib/swamp/input_button.rb	/^  class InputButton < Element$/;"	c	class:Swamp
+InputButtons	lib/swamp/input_buttons.rb	/^  class InputButtons < Elements$/;"	c	class:Swamp
+Interface	lib/swamp/interface.rb	/^  class Interface$/;"	c	class:Swamp
+Link	lib/swamp/link.rb	/^  class Link < Element$/;"	c	class:Swamp
+Links	lib/swamp/links.rb	/^  class Links < Elements$/;"	c	class:Swamp
+Output	features/support/setup.rb	/^class Output$/;"	c
+SelectBox	lib/swamp/select_box.rb	/^  class SelectBox < Element$/;"	c	class:Swamp
+SelectBoxes	lib/swamp/select_boxes.rb	/^  class SelectBoxes < Elements$/;"	c	class:Swamp
+Swamp	lib/swamp.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/base.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/builder.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/button.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/buttons.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/element.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/elements.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/evaluator.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/field.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/fields.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/formatter.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/input_button.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/input_buttons.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/interface.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/link.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/links.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/select_box.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/select_boxes.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/version.rb	/^module Swamp$/;"	m
+Swamp	lib/swamp/wrapper.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/builder_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/buttons_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/evaluator_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/fields_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/formatter_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/input_buttons_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/interface_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/links_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/select_boxes_spec.rb	/^module Swamp$/;"	m
+Swamp	spec/swamp/wrapper_spec.rb	/^module Swamp$/;"	m
+Wrapper	lib/swamp/wrapper.rb	/^  class Wrapper < Base$/;"	c	class:Swamp
+accessor	lib/swamp/button.rb	/^    def accessor$/;"	f	class:Swamp.Button
+accessor	lib/swamp/element.rb	/^    def accessor$/;"	f	class:Swamp.Element
+accessor	lib/swamp/field.rb	/^    def accessor$/;"	f	class:Swamp.Field
+accessor	lib/swamp/input_button.rb	/^    def accessor$/;"	f	class:Swamp.InputButton
+accessor	lib/swamp/link.rb	/^    def accessor$/;"	f	class:Swamp.Link
+accessor	lib/swamp/select_box.rb	/^    def accessor$/;"	f	class:Swamp.SelectBox
+build_snippet	lib/swamp/builder.rb	/^    def build_snippet$/;"	f	class:Swamp.Builder
+buttons	features/support/setup.rb	/^def buttons$/;"	f
+downcase_name	lib/swamp/formatter.rb	/^    def downcase_name$/;"	f	class:Swamp.Formatter
+enter_keystroke?	lib/swamp/evaluator.rb	/^    def enter_keystroke?$/;"	f	class:Swamp.Evaluator
+explore	lib/swamp/wrapper.rb	/^    def explore(url)$/;"	f	class:Swamp.Wrapper
+fields	features/support/setup.rb	/^def fields$/;"	f
+format	lib/swamp/element.rb	/^    def format(text)$/;"	f	class:Swamp.Element
+format	lib/swamp/formatter.rb	/^    def format(name)$/;"	f	class:Swamp.Formatter
+format_class	lib/swamp/formatter.rb	/^    def format_class(name)$/;"	f	class:Swamp.Formatter
+formatter	lib/swamp/elements.rb	/^    def formatter$/;"	f	class:Swamp.Elements
+get	lib/swamp/buttons.rb	/^    def get$/;"	f	class:Swamp.Buttons
+get	lib/swamp/fields.rb	/^    def get$/;"	f	class:Swamp.Fields
+get	lib/swamp/input_buttons.rb	/^    def get$/;"	f	class:Swamp.InputButtons
+get	lib/swamp/links.rb	/^    def get$/;"	f	class:Swamp.Links
+get	lib/swamp/select_boxes.rb	/^    def get$/;"	f	class:Swamp.SelectBoxes
+has_class?	lib/swamp/elements.rb	/^    def has_class?(element)$/;"	f	class:Swamp.Elements
+has_id?	lib/swamp/elements.rb	/^    def has_id?(element)$/;"	f	class:Swamp.Elements
+has_name?	lib/swamp/elements.rb	/^    def has_name?(element)$/;"	f	class:Swamp.Elements
+has_no_punctuation?	lib/swamp/elements.rb	/^    def has_no_punctuation?(string)$/;"	f	class:Swamp.Elements
+has_valid_id?	lib/swamp/elements.rb	/^    def has_valid_id?(element)$/;"	f	class:Swamp.Elements
+has_valid_text?	lib/swamp/elements.rb	/^    def has_valid_text?(element)$/;"	f	class:Swamp.Elements
+has_valid_value?	lib/swamp/elements.rb	/^    def has_valid_value?(element)$/;"	f	class:Swamp.Elements
+has_value?	lib/swamp/elements.rb	/^    def has_value?(element)$/;"	f	class:Swamp.Elements
+identation	lib/swamp/builder.rb	/^    def identation$/;"	f	class:Swamp.Builder
+initialize	lib/swamp/base.rb	/^    def initialize$/;"	f	class:Swamp.Base
+initialize	lib/swamp/builder.rb	/^    def initialize(element)$/;"	f	class:Swamp.Builder
+initialize	lib/swamp/element.rb	/^    def initialize(name, selector)$/;"	f	class:Swamp.Element
+initialize	lib/swamp/evaluator.rb	/^    def initialize(input, wrapper)$/;"	f	class:Swamp.Evaluator
+initialize	lib/swamp/interface.rb	/^    def initialize(output, wrapper)$/;"	f	class:Swamp.Interface
+initialize	lib/swamp/wrapper.rb	/^    def initialize(meta_collection)$/;"	f	class:Swamp.Wrapper
+input_buttons	features/support/setup.rb	/^def input_buttons$/;"	f
+line_break	lib/swamp/builder.rb	/^    def line_break$/;"	f	class:Swamp.Builder
+links	features/support/setup.rb	/^def links$/;"	f
+messages	features/support/setup.rb	/^  def messages$/;"	f	class:Output
+method_definition	lib/swamp/builder.rb	/^    def method_definition$/;"	f	class:Swamp.Builder
+method_end	lib/swamp/builder.rb	/^    def method_end$/;"	f	class:Swamp.Builder
+method_signature	lib/swamp/button.rb	/^    def method_signature$/;"	f	class:Swamp.Button
+method_signature	lib/swamp/element.rb	/^    def method_signature$/;"	f	class:Swamp.Element
+method_signature	lib/swamp/field.rb	/^    def method_signature$/;"	f	class:Swamp.Field
+method_signature	lib/swamp/input_button.rb	/^    def method_signature$/;"	f	class:Swamp.InputButton
+method_signature	lib/swamp/link.rb	/^    def method_signature$/;"	f	class:Swamp.Link
+method_signature	lib/swamp/select_box.rb	/^    def method_signature$/;"	f	class:Swamp.SelectBox
+output	features/support/setup.rb	/^def output$/;"	f
+prefix	lib/swamp/builder.rb	/^    def prefix$/;"	f	class:Swamp.Builder
+present	lib/swamp/interface.rb	/^    def present(messages)$/;"	f	class:Swamp.Interface
+puts	features/support/setup.rb	/^  def puts(message)$/;"	f	class:Output
+refresh_command?	lib/swamp/evaluator.rb	/^    def refresh_command?$/;"	f	class:Swamp.Evaluator
+remove_suffix_symbols	lib/swamp/formatter.rb	/^    def remove_suffix_symbols$/;"	f	class:Swamp.Formatter
+remove_white_spaces	lib/swamp/formatter.rb	/^    def remove_white_spaces$/;"	f	class:Swamp.Formatter
+replace_brackets	lib/swamp/formatter.rb	/^    def replace_brackets$/;"	f	class:Swamp.Formatter
+replace_dashes	lib/swamp/formatter.rb	/^    def replace_dashes$/;"	f	class:Swamp.Formatter
+replace_parentheses	lib/swamp/formatter.rb	/^    def replace_parentheses$/;"	f	class:Swamp.Formatter
+replace_white_spaces_with_dots	lib/swamp/formatter.rb	/^    def replace_white_spaces_with_dots$/;"	f	class:Swamp.Formatter
+request	lib/swamp/interface.rb	/^    def request(input)$/;"	f	class:Swamp.Interface
+run	lib/swamp/interface.rb	/^    def run$/;"	f	class:Swamp.Interface
+scan	lib/swamp/interface.rb	/^    def scan(input)$/;"	f	class:Swamp.Interface
+scan	lib/swamp/wrapper.rb	/^    def scan$/;"	f	class:Swamp.Wrapper
+select_boxes	features/support/setup.rb	/^def select_boxes$/;"	f
+setup_capybara	lib/swamp/base.rb	/^    def setup_capybara$/;"	f	class:Swamp.Base
+swamp	features/support/setup.rb	/^def swamp$/;"	f
+valid_type?	lib/swamp/fields.rb	/^    def valid_type?(element)$/;"	f	class:Swamp.Fields
+valid_url?	lib/swamp/evaluator.rb	/^    def valid_url?$/;"	f	class:Swamp.Evaluator
+wrapper	features/support/setup.rb	/^def wrapper$/;"	f
