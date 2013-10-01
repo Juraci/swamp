@@ -14,6 +14,7 @@ module Swamp
     end
 
     def scan(input)
+      @output.puts "Scanning, please wait..."
       evaluator = Swamp::Evaluator.new(input, @wrapper)
       messages = (evaluator.valid_url? or evaluator.refresh_command?) ? request(input) : INVALID_REQUEST_MESSAGE
       present messages
@@ -23,6 +24,8 @@ module Swamp
       @wrapper.explore(input)
       @wrapper.scan
     end
+
+    private
 
     def present(messages)
       messages.each do |message|
