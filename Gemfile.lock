@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    swamp (0.0.1)
+    swamp (0.0.4)
       capybara
       selenium-webdriver
 
