@@ -100,8 +100,8 @@ end
 * Then just call the methods passing the expected parameters when necessary. For instance:
 
 ```ruby
-When /^I attempt to sign in with valid information$/ do
-  sign_in_page = PageObjects::SignIn.new
+When /^I attempt to sign in with valid credentials/ do
+  sign_in_page = PageObjects::SignIn.visit
   sign_in_page.type_email "username@email.com"
   sign_in_page.type_passwd "mypassword"
   sign_in_page.sign_in
