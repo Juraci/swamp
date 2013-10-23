@@ -60,12 +60,16 @@ def link_signup
   source.click_link("link-signup")
 end
 ```
+(notice that the method names are a best guess and you are always free to change them)
 
 * Copy the code snippets and paste inside your capybara-page-object classes like this:
 
 ```ruby
 module PageObjects
   class SignIn < CapybaraPageObject::Page
+  
+    path ""
+  
     def type_email(input)
       source.fill_in("Email", with: input)
     end
@@ -92,3 +96,15 @@ module PageObjects
   end
 end
 ```
+
+* Then just call the methods passing the expected parameters when necessary. For instance:
+
+```ruby
+When /^I attempt to sign in with valid information$/ do
+  sign_in_page = PageObjects::SignIn.new
+  sign_in_page.type_email "username@email.com"
+  sign_in_page.type_passwd "mypassword"
+  sign_in_page.sign_in
+end
+```
+
