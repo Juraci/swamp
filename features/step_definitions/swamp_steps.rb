@@ -24,8 +24,10 @@ end
 
 Then /^swamp should not output any snippet$/ do
   prompt_message = "Enter the url for the page to be scanned:"
-  output.should have_at_least(1).messages
-  output.messages.should include(prompt_message)
+  wait_message = "Scanning, please wait..."
+  output.should have_at_most(2).messages
+  output.messages.first.should == prompt_message
+  output.messages.last.should == wait_message
 end
 
 Given /^that swamp already have scanned a page$/ do
