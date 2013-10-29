@@ -3,6 +3,7 @@ module Swamp
 
     WELCOME_MESSAGE = ['Enter the url for the page to be scanned:']
     INVALID_REQUEST_MESSAGE = ['Please enter a valid url!']
+    NO_ELEMENTS_MESSAGE = ['No elements were detected']
 
     def initialize(output, wrapper)
       @output = output
@@ -15,14 +16,8 @@ module Swamp
 
     def scan(input)
       @output.puts "Scanning, please wait..."
-      evaluator = Swamp::Evaluator.new(input, @wrapper)
-      messages = (evaluator.valid_url? or evaluator.refresh_command?) ? request(input) : INVALID_REQUEST_MESSAGE
+      messages = valid_request?(input) ? request(input) : INVALID_REQUEST_MESSAGE
       present messages
-    end
-
-    def request(input)
-      @wrapper.explore(input)
-      @wrapper.scan
     end
 
     private
@@ -31,6 +26,19 @@ module Swamp
       messages.each do |message|
         @output.puts(message)
       end
+    end
+
+    def valid_request?(input)
+      evaluator(input).valid_url? or evaluator(input).refresh_command?
+    end
+
+    def evaluator(input)
+      Swamp::Evaluator.new(input, @wrapper)
+    end
+
+    def request(input)
+      @wrapper.explore(input)
+      @wrapper.scan.empty? ? NO_ELEMENTS_MESSAGE : @wrapper.scan
     end
   end
 end

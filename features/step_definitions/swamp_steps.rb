@@ -23,11 +23,11 @@ Then /^swamp should output the following code snippets?$/ do |string|
 end
 
 Then /^swamp should not output any snippet$/ do
-  prompt_message = "Enter the url for the page to be scanned:"
-  wait_message = "Scanning, please wait..."
-  output.should have_at_most(2).messages
-  output.messages.first.should == prompt_message
-  output.messages.last.should == wait_message
+  output.should have_at_most(3).messages
+  output.messages.each do |m|
+    m.should_not include("def")
+    m.should_not include("source.")
+  end
 end
 
 Given /^that swamp already have scanned a page$/ do
@@ -43,6 +43,7 @@ When /^I attempt to hit enter at the terminal$/ do
 end
 
 Then /^swamp should scan the current page$/ do
-  output.should have_at_least(3).messages
-  output.messages.last.should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
+  output.should have_at_most(5).messages
+  output.messages[3].should == "Scanning, please wait..."
+  output.messages[4].should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
 end

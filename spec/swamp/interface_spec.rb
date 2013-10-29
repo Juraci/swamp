@@ -29,10 +29,20 @@ module Swamp
       end
 
       context "when it scans a valid url" do
-        it "sends the code snippets of the scanned page to the output" do
-          wrapper.stub(:scan).and_return(["code_snippet"])
-          output.should_receive(:puts).with("code_snippet")
-          interface.scan("http://www.fakepage.com")
+        context "when elements were found" do
+          it "sends the code snippets of the scanned page to the output" do
+            wrapper.stub(:scan).and_return(["code_snippet"])
+            output.should_receive(:puts).with("code_snippet")
+            interface.scan("http://www.fakepage.com")
+          end
+        end
+
+        context "when no elements were found" do
+          it "sends a warning message to the output telling that no elements were found" do
+            wrapper.stub(:scan).and_return([])
+            output.should_receive(:puts).with("No elements were detected")
+            interface.scan("http://www.fakepage.com")
+          end
         end
       end
 
