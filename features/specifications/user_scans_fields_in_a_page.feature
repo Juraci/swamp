@@ -7,7 +7,7 @@ Feature: user scans fields in a page
   Background: swamp is running
     Given that swamp is already running
 
-  Scenario: A standard field
+  Scenario: An input that has id, name and whose the type is text
     Given I enter the url for this page: "field.html"
     When swamp scans that page
     Then swamp should output the following code snippet
@@ -17,7 +17,17 @@ Feature: user scans fields in a page
       end
       """
 
-  Scenario: A field without the id attribute
+  Scenario: An input that has no name, has id and whose the type is text
+    Given I enter the url for this page: "field_without_name.html"
+    When swamp scans that page
+    Then swamp should output the following code snippet
+      """
+      def type_username(input)
+        source.fill_in("username", with: input)
+      end
+      """
+
+  Scenario: An input without the id attribute that has name and the type is text
     Given I enter the url for this page: "field_without_id.html"
     When swamp scans that page
     Then swamp should output the following code snippet
@@ -27,12 +37,12 @@ Feature: user scans fields in a page
       end
       """
 
-  Scenario: A checkbox
+  Scenario: An input whose the type is checkbox
     Given I enter the url for this page: "checkbox.html"
     When swamp scans that page
     Then swamp should not output any snippet
 
-  Scenario: A radio
+  Scenario: An input whose the type is radio
     Given I enter the url for this page: "radio.html"
     When swamp scans that page
     Then swamp should not output any snippet
