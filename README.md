@@ -108,3 +108,28 @@ When /^I attempt to sign in with valid credentials/ do
 end
 ```
 
+### Dynamically detecting elements
+
+* You can navigate in the browser that swamp opens 
+* Lets say you need to log in to have access to some page 
+* Just enter the url for this page
+* Do the login procedure in the oppened browser manually
+* Wait for the new page to load
+* Then just go to the terminal and hit ENTER
+* Swamp will detect the new elements (if any) and will generate the code snippets the same way as before
+
+## How it works?
+
+It uses capybara to visit the URL and it looks for patterns like:
+
+* Buttons
+* Fields
+* Select boxes
+* Input buttons
+* Links
+
+Then for each pattern it verifies if the element is visible, has some key attributes like `id`, `name`, `text` and etc. 
+There is some logic to decide on how to best create the method's name and the capybara's selector. 
+Finally the code snippets are formatted and printed in the output.
+
+Check the `.feature` files to learn the basic behavior and the `spec.rb` files to learn about the internal behavior. Feel free to contribute.
