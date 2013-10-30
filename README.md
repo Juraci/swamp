@@ -120,7 +120,7 @@ end
 
 ## How it works?
 
-It uses capybara to visit the URL and it looks for patterns like:
+It uses capybara to fireup the browser and visit the target URL then it looks for patterns like:
 
 * Buttons
 * Fields
@@ -128,8 +128,8 @@ It uses capybara to visit the URL and it looks for patterns like:
 * Input buttons
 * Links
 
-Then for each pattern it verifies if the element is visible, has some key attributes like `id`, `name`, `text` and etc. 
+For each pattern found it verifies if the element is visible, has some key attributes like `id`, `name`, `text` and etc. 
 There is some logic to decide on how to best create the method's name and the capybara's selector. 
 Finally the code snippets are formatted and printed in the output.
 
-Check the `.feature` files to learn the basic behavior and the `spec.rb` files to learn about the internal behavior. Feel free to contribute.
+Check the `.feature` files to learn the about the overall behavior and the `_spec.rb` files to learn about the internal behavior. Feel free to contribute.
