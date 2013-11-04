@@ -1,5 +1,9 @@
 module Swamp
   class Elements < Base
+
+    BORDER_SIZE = "3px"
+    BORDER_COLOR = "#ff0000"
+
     def has_id?(element)
       element['id'] != nil and element['id'] != "" ? true : false
     end
@@ -34,6 +38,31 @@ module Swamp
 
     def formatter
       @formatter ||= Swamp::Formatter.new
+    end
+
+    def shine(selector, mode = :css)
+      set_border_size(selector, BORDER_SIZE, mode)
+      set_border_color(selector, BORDER_COLOR, mode)
+    end
+
+    def set_border_size(selector, size, mode)
+      if mode == :css
+        page.execute_script %-document.querySelector("#{selector}").style.borderWidth='#{size}'-
+      elsif mode == :xpath
+        page.execute_script %-document.evaluate("#{selector}", document, null, 9, null).singleNodeValue.style.borderWidth='#{size}';- rescue false
+      else
+        raise "Mode #{mode} not found"
+      end
+    end
+
+    def set_border_color(selector, color, mode = :css)
+      if mode == :css
+        page.execute_script %-document.querySelector("#{selector}").style.borderColor='#{color}'-
+      elsif mode == :xpath
+        page.execute_script %-document.evaluate("#{selector}", document, null, 9, null).singleNodeValue.style.borderColor='#{color}';- rescue false
+      else
+        raise "Mode #{mode} not found"
+      end
     end
   end
 end

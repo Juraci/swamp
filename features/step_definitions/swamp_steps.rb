@@ -18,7 +18,7 @@ When /^swamp scans that page$/ do
   swamp.scan(@url)
 end
 
-Then /^swamp should output the following code snippets?$/ do |string|
+Then /^(?:swamp|it) should output the following code snippets?$/ do |string|
   output.messages.should include(string)
 end
 
@@ -46,4 +46,11 @@ Then /^swamp should scan the current page$/ do
   output.should have_at_most(5).messages
   output.messages[3].should == "Scanning, please wait..."
   output.messages[4].should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
+end
+
+Then /^swamp should highlight this element: "(.+)"$/ do |selector|
+  page = Capybara.current_session
+  page.should have_css "#{selector}[style]"
+  page.find(selector)[:style].should include("border-width: 3px")
+  page.find(selector)[:style].should include("border-color: rgb(255, 0, 0)")
 end

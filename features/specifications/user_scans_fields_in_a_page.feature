@@ -10,7 +10,8 @@ Feature: user scans fields in a page
   Scenario: An input that has id, name and whose the type is text
     Given I enter the url for this page: "field.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "#id_username"
+    And it should output the following code snippet
       """
       def type_username(input)
         source.fill_in("id_username", with: input)
@@ -20,7 +21,8 @@ Feature: user scans fields in a page
   Scenario: An input that has no name, has id and whose the type is text
     Given I enter the url for this page: "field_without_name.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "#username"
+    Then it should output the following code snippet
       """
       def type_username(input)
         source.fill_in("username", with: input)
@@ -30,7 +32,8 @@ Feature: user scans fields in a page
   Scenario: An input without the id attribute that has name and the type is text
     Given I enter the url for this page: "field_without_id.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "input[name='username']"
+    Then it should output the following code snippet
       """
       def type_username(input)
         source.fill_in("username", with: input)
