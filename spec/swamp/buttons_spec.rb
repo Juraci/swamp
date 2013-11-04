@@ -7,6 +7,7 @@ module Swamp
       element = {'id' => "u_0_2"}
       element.stub(:text).and_return("Sign Up")
       element.stub(:visible?).and_return(true)
+      buttons.page.stub(:execute_script).and_return(nil)
       buttons.page.should_receive(:all).with('button').and_return([element])
       buttons.get
     end
@@ -21,7 +22,13 @@ module Swamp
           buttons.page.stub(:all).with('button').and_return([element])
         end
 
+        it "highlights the element" do
+          buttons.page.should_receive(:execute_script).twice
+          buttons.get
+        end
+
         it "returns the element in the array using the text as both the name and the selector" do
+          buttons.page.stub(:execute_script).and_return(nil)
           buttons.get.should have(1).button
           buttons.get.each.first.name.should == "Sign Up"
           buttons.get.each.first.selector.should == "Sign Up"
@@ -38,7 +45,13 @@ module Swamp
             buttons.page.stub(:all).with('button').and_return([element])
           end
 
+          it "highlights the element" do
+            buttons.page.should_receive(:execute_script).twice
+            buttons.get
+          end
+
           it "returns the element in the array using the id as both the name and the selector" do
+            buttons.page.stub(:execute_script).and_return(nil)
             buttons.get.should have(1).button
             buttons.get.each.first.name.should == "search-button"
             buttons.get.each.first.selector.should == "search-button"
@@ -55,7 +68,13 @@ module Swamp
               buttons.page.stub(:all).with('button').and_return([element])
             end
 
+            it "highlights the element" do
+              buttons.page.should_receive(:execute_script).twice
+              buttons.get
+            end
+
             it "returns the element in the array using the value as both the name and the selector" do
+              buttons.page.stub(:execute_script).and_return(nil)
               buttons.get.should have(1).button
               buttons.get.each.first.name.should == "search-button"
               buttons.get.each.first.selector.should == "search-button"

@@ -10,7 +10,8 @@ Feature: user scans buttons in a page
   Scenario: A button that has text
     Given I enter the url for this page: "button.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "button"
+    And it should output the following code snippet
       """
       def sign_up
         source.click_button("Sign Up")
@@ -20,7 +21,8 @@ Feature: user scans buttons in a page
   Scenario: A button that doesn't has text but has id
     Given I enter the url for this page: "button_without_text.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "#search-button"
+    And it should output the following code snippet
       """
       def search_button
         source.click_button("search-button")
@@ -30,7 +32,8 @@ Feature: user scans buttons in a page
   Scenario: A button that doesn't has either text or id but has the value attribute
     Given I enter the url for this page: "button_without_text_without_id_with_value.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "button[value='buy-now']"
+    And it should output the following code snippet
       """
       def buy_now
         source.click_button("buy-now")

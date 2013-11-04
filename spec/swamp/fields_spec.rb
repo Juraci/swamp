@@ -6,6 +6,7 @@ module Swamp
     it "delegates to capybara the responsibility to get the fields" do
       element = {'name' => "username", 'type' => "text"}
       element.stub(:visible?).and_return(true)
+      fields.page.stub(:execute_script).and_return(nil)
       fields.page.should_receive(:all).with('input').and_return([element])
       fields.get
     end
@@ -22,12 +23,19 @@ module Swamp
             fields.page.stub(:all).with('input').and_return([element])
           end
 
+          it "highlights the element" do
+            fields.page.should_receive(:execute_script).twice
+            fields.get
+          end
+
           it "returns the element in the array using the name as the method's name" do
+            fields.page.stub(:execute_script).and_return(nil)
             fields.get.should have(1).field
             fields.get.first.name.should == "username"
           end
 
           it "returns the element in the array using the id as the selector" do
+            fields.page.stub(:execute_script).and_return(nil)
             fields.get.should have(1).field
             fields.get.first.selector.should == "u_0_b"
           end
@@ -41,12 +49,19 @@ module Swamp
             fields.page.stub(:all).with('input').and_return([element])
           end
 
+          it "highlights the element" do
+            fields.page.should_receive(:execute_script).twice
+            fields.get
+          end
+
           it "returns the element in the array using the id as the method's name" do
+            fields.page.stub(:execute_script).and_return(nil)
             fields.get.should have(1).field
             fields.get.first.name.should == "username"
           end
 
           it "returns the element in the array using the id as the selector" do
+            fields.page.stub(:execute_script).and_return(nil)
             fields.get.should have(1).field
             fields.get.first.selector.should == "username"
           end
@@ -60,12 +75,19 @@ module Swamp
             fields.page.stub(:all).with('input').and_return([element])
           end
 
+          it "highlights the element" do
+            fields.page.should_receive(:execute_script).twice
+            fields.get
+          end
+
           it "returns the element in the array using the name as the method's name" do
+            fields.page.stub(:execute_script).and_return(nil)
             fields.get.should have(1).field
             fields.get.first.name.should == "username"
           end
 
           it "returns the element in the array using the name as the selector" do
+            fields.page.stub(:execute_script).and_return(nil)
             fields.get.should have(1).field
             fields.get.first.selector.should == "username"
           end
