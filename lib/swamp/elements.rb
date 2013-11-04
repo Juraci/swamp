@@ -3,6 +3,7 @@ module Swamp
 
     BORDER_SIZE = "3px"
     BORDER_COLOR = "#ff0000"
+    BACKGROUND_COLOR = "#ff0000"
 
     def has_id?(element)
       element['id'] != nil and element['id'] != "" ? true : false
@@ -45,6 +46,12 @@ module Swamp
       set_border_color(selector, BORDER_COLOR, mode)
     end
 
+    def shine_link(selector)
+      set_background_color selector, BACKGROUND_COLOR
+    end
+
+    private
+
     def set_border_size(selector, size, mode)
       if mode == :css
         page.execute_script %-document.querySelector("#{selector}").style.borderWidth='#{size}'-
@@ -63,6 +70,10 @@ module Swamp
       else
         raise "Mode #{mode} not found"
       end
+    end
+
+    def set_background_color(selector, color)
+      page.execute_script %-document.querySelector("#{selector}").style.backgroundColor='#{color}'-
     end
   end
 end
