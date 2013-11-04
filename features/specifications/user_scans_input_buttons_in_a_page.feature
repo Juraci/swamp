@@ -10,7 +10,8 @@ Feature: user scans submits in a page
   Scenario: A submit that has value and id
     Given I enter the url for this page: "input_submit.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "#u_0_b"
+    And it should output the following code snippet
       """
       def log_in
         source.find(:css, "#u_0_b").click
@@ -20,7 +21,8 @@ Feature: user scans submits in a page
   Scenario: A submit that has no id
     Given I enter the url for this page: "input_submit_without_id.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "input.button.g-button.g-button-submit[value='Continue']"
+    And it should output the following code snippet
       """
       def continue
         source.find(:css, "input.button.g-button.g-button-submit[value='Continue']").click

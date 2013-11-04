@@ -6,6 +6,7 @@ module Swamp
     it "delegates to capybara the responsibility to get the submit elements" do
       element = {'value' => "Log In", 'id' => "u_0_b"}
       element.stub(:visible?).and_return(true)
+      input_buttons.page.stub(:execute_script).and_return(nil)
       input_buttons.page.should_receive(:all).with('input[type="submit"]').and_return([element])
       input_buttons.get
     end
@@ -19,12 +20,19 @@ module Swamp
           input_buttons.page.stub(:all).with('input[type="submit"]').and_return([element])
         end
 
+        it "highlights the element" do
+          input_buttons.page.should_receive(:execute_script).twice
+          input_buttons.get
+        end
+
         it "returns the element in the array using the value as the name" do
+          input_buttons.page.stub(:execute_script).and_return(nil)
           input_buttons.get.should have(1).input_submit
           input_buttons.get.first.name.should == "Log In"
         end
 
         it "returns the element in the array using the id as the selector" do
+          input_buttons.page.stub(:execute_script).and_return(nil)
           input_buttons.get.should have(1).input_submit
           input_buttons.get.first.selector.should == "#u_0_b"
         end
@@ -38,12 +46,19 @@ module Swamp
           input_buttons.page.stub(:all).with('input[type="submit"]').and_return([element])
         end
 
+        it "highlights the element" do
+          input_buttons.page.should_receive(:execute_script).twice
+          input_buttons.get
+        end
+
         it "returns the element in the array using the value as the name" do
+          input_buttons.page.stub(:execute_script).and_return(nil)
           input_buttons.get.should have(1).input_submit
           input_buttons.get.first.name.should == "Log In"
         end
 
         it "returns the element in the array using the class concatenated with the value as the selector" do
+          input_buttons.page.stub(:execute_script).and_return(nil)
           input_buttons.get.should have(1).input_submit
           input_buttons.get.first.selector.should == "input.btn.without.id[value='Log In']"
         end

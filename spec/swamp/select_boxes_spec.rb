@@ -6,6 +6,7 @@ module Swamp
     it "delegates to capybara the responsibility to get the select box elements" do
       element = {'id' => "month", 'name' => "birthday_month"}
       element.stub(:visible?).and_return(true)
+      select_boxes.page.stub(:execute_script).and_return(nil)
       select_boxes.page.should_receive(:all).with('select').and_return([element])
       select_boxes.get
     end
@@ -19,12 +20,19 @@ module Swamp
           select_boxes.page.stub(:all).with('select').and_return([element])
         end
 
+        it "highlights the element" do
+          select_boxes.page.should_receive(:execute_script).twice
+          select_boxes.get
+        end
+
         it "returns the element in the array using the id as the name" do
+          select_boxes.page.stub(:execute_script).and_return(nil)
           select_boxes.get.should have(1).select_box
           select_boxes.get.first.name.should == "month"
         end
 
         it "returns the element in the array using the id as the selector" do
+          select_boxes.page.stub(:execute_script).and_return(nil)
           select_boxes.get.should have(1).select_box
           select_boxes.get.first.selector.should == "month"
         end
@@ -38,12 +46,19 @@ module Swamp
           select_boxes.page.stub(:all).with('select').and_return([element])
         end
 
+        it "highlights the element" do
+          select_boxes.page.should_receive(:execute_script).twice
+          select_boxes.get
+        end
+
         it "returns the element in the array using the name as the name" do
+          select_boxes.page.stub(:execute_script).and_return(nil)
           select_boxes.get.should have(1).select_box
           select_boxes.get.first.name.should == "birthday_month"
         end
 
         it "returns the element in the array using the name as the selector" do
+          select_boxes.page.stub(:execute_script).and_return(nil)
           select_boxes.get.should have(1).select_box
           select_boxes.get.first.selector.should == "birthday_month"
         end
