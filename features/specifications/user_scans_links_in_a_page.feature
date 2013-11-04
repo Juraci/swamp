@@ -10,7 +10,8 @@ Feature: user scans links in a page
   Scenario: A link that has id
     Given I enter the url for this page: "link_with_id.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this link: "#link-forgot-passwd"
+    And it should output the following code snippet
       """
       def link_forgot_passwd
         source.click_link("link-forgot-passwd")
