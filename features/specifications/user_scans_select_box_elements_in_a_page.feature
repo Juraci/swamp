@@ -10,7 +10,8 @@ Feature: user scans select box elements in a page
   Scenario: A select box that has id
     Given I enter the url for this page: "select_box_with_id.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "#month"
+    And it should output the following code snippet
       """
       def select_month(option)
         source.select(option, :from => "month")
@@ -20,7 +21,8 @@ Feature: user scans select box elements in a page
   Scenario: A select box that has name only
     Given I enter the url for this page: "select_box_with_name_only.html"
     When swamp scans that page
-    Then swamp should output the following code snippet
+    Then swamp should highlight this element: "select[name='Region']"
+    And it should output the following code snippet
       """
       def select_region(option)
         source.select(option, :from => "Region")
