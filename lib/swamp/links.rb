@@ -4,7 +4,7 @@ module Swamp
       elements = []
       page.all('a[href][id]').map do | element |
         if element.visible?
-          shine_link %-##{element["id"]}-
+          shine_link %/##{element["id"]}/
           elements << Swamp::Link.new(element["id"], element["id"])
         end
       end
