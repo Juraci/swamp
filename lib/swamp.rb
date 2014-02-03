@@ -15,6 +15,7 @@ require 'swamp/input_buttons'
 require 'swamp/input_button'
 require 'swamp/select_boxes'
 require 'swamp/select_box'
+require 'swamp/complex_select_box'
 require 'swamp/links'
 require 'swamp/link'
 

@@ -28,3 +28,14 @@ Feature: user scans select box elements in a page
         source.select(option, :from => "Region")
       end
       """
+
+  Scenario: A select box that doesn't has either id or name
+    Given I enter the url for this page: "select_without_id_and_name.html"
+    When swamp scans that page
+    Then swamp should highlight this element: "select.provider-select"
+    And it should output the following code snippet
+      """
+      def provider_select(option)
+        source.find(:css, "select.provider-select option[value='#{option}']").click
+      end
+      """
