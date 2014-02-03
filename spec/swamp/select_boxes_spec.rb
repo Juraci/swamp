@@ -63,6 +63,32 @@ module Swamp
           select_boxes.get.first.selector.should == "birthday_month"
         end
       end
+
+      context "when the select element doesn't has either id or name" do
+        let(:element) { {'class' => "provider-select"} }
+
+        before(:each) do
+          element.stub(:visible?).and_return(true)
+          select_boxes.page.stub(:all).with('select').and_return([element])
+        end
+
+        it "highlights the element" do
+          select_boxes.page.should_receive(:execute_script).twice
+          select_boxes.get
+        end
+
+        it "returns the element in the array using the class as the name" do
+          select_boxes.page.stub(:execute_script).and_return(nil)
+          select_boxes.get.should have(1).select_box
+          select_boxes.get.first.name.should == "provider-select"
+        end
+
+        it "returns the element in the array using the class as the selector" do
+          select_boxes.page.stub(:execute_script).and_return(nil)
+          select_boxes.get.should have(1).select_box
+          select_boxes.get.first.selector.should == "provider-select"
+        end
+      end
     end
   end
 end

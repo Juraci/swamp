@@ -10,6 +10,9 @@ module Swamp
           elsif has_name?(element)
             shine %/select[name='#{element["name"]}']/
             elements << Swamp::SelectBox.new(element["name"], element["name"])
+          else
+            shine %/select.#{element["class"]}/
+            elements << Swamp::ComplexSelectBox.new(element["class"], element["class"])
           end
         end
       end
