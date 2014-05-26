@@ -14,7 +14,7 @@ Feature: user scans buttons in a page
     And it should output the following code snippet
       """
       def sign_up
-        source.click_button("Sign Up")
+        page.click_button("Sign Up")
       end
       """
 
@@ -25,7 +25,7 @@ Feature: user scans buttons in a page
     And it should output the following code snippet
       """
       def search_button
-        source.click_button("search-button")
+        page.click_button("search-button")
       end
       """
 
@@ -36,7 +36,7 @@ Feature: user scans buttons in a page
     And it should output the following code snippet
       """
       def buy_now
-        source.click_button("buy-now")
+        page.click_button("buy-now")
       end
       """
 

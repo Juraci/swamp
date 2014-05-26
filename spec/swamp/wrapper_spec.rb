@@ -34,7 +34,7 @@ module Swamp
 
           meta_collection = [fields]
           wrapper = Swamp::Wrapper.new(meta_collection)
-          wrapper.scan.should == ["def type_username(input)\n  source.fill_in(\"username\", with: input)\nend"]
+          wrapper.scan.should == ["def type_username(input)\n  page.fill_in(\"username\", with: input)\nend"]
         end
       end
 
@@ -46,7 +46,7 @@ module Swamp
 
           meta_collection = [buttons]
           wrapper = Swamp::Wrapper.new(meta_collection)
-          wrapper.scan.should == ["def log_in\n  source.click_button(\"log_in\")\nend"]
+          wrapper.scan.should == ["def log_in\n  page.click_button(\"log_in\")\nend"]
         end
       end
 
@@ -58,7 +58,7 @@ module Swamp
 
           meta_collection = [input_buttons]
           wrapper = Swamp::Wrapper.new(meta_collection)
-          wrapper.scan.should == ["def log_in\n  source.find(:css, \"input#u_0_b\").click\nend"]
+          wrapper.scan.should == ["def log_in\n  page.find(:css, \"input#u_0_b\").click\nend"]
         end
       end
 
@@ -70,7 +70,7 @@ module Swamp
 
           meta_collection = [select_boxes]
           wrapper = Swamp::Wrapper.new(meta_collection)
-          wrapper.scan.should == ["def select_month(option)\n  source.select(option, :from => \"month\")\nend"]
+          wrapper.scan.should == ["def select_month(option)\n  page.select(option, :from => \"month\")\nend"]
         end
       end
 
@@ -82,7 +82,7 @@ module Swamp
 
           meta_collection = [links]
           wrapper = Swamp::Wrapper.new(meta_collection)
-          wrapper.scan.should == ["def forgot_password\n  source.click_link(\"forgot-password\")\nend"]
+          wrapper.scan.should == ["def forgot_password\n  page.click_link(\"forgot-password\")\nend"]
         end
       end
 

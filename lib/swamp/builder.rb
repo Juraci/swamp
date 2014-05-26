@@ -21,7 +21,7 @@ module Swamp
     end
 
     def prefix
-      "source."
+      "page."
     end
 
     def identation
