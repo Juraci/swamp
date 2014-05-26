@@ -1,14 +1,17 @@
 module Swamp
   class Builder
+
+    attr_reader :element
+
     def initialize(element)
       @element = element
     end
 
     def build_snippet
-      if @element.name
-        [method_definition, @element.method_signature, line_break, identation, prefix, @element.accessor, line_break, method_end].join
+      if element.name
+        [method_definition, element.method_signature, line_break, identation, prefix, element.accessor, line_break, method_end].join
       else
-        [prefix, @element.accessor].join
+        [prefix, element.accessor].join
       end
     end
 
