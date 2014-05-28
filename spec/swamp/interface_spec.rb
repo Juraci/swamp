@@ -3,12 +3,28 @@ module Swamp
   describe Interface do
     let(:output) { output = double('output').as_null_object }
     let(:wrapper) { wrapper = double('wrapper').as_null_object }
-    let(:interface) { interface = Swamp::Interface.new(output, wrapper) }
+    let(:setup) { setup = Swamp::Setup.new }
+    let(:interface) { interface = Swamp::Interface.new(output, wrapper, setup) }
 
     describe "#run" do
       it "prompts for the url" do
         output.should_receive(:puts).with("Enter the url for the page to be scanned:")
         interface.run
+      end
+    end
+
+    describe "#setup_command" do
+      let(:command) { ":scope = source" }
+      it "delegates the responsibility to execute the command to the Setup class" do
+        setup.should_receive(:handle_command).with(command).and_return(["something"])
+        interface.setup_command(command)
+      end
+
+      context "when it receives a valid command" do
+        it "sends a message to the output telling that the command was successful" do
+          output.should_receive(:puts).with("Option :scope setted to source")
+          interface.setup_command(command)
+        end
       end
     end
 

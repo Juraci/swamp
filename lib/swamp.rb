@@ -1,4 +1,5 @@
 require 'swamp/version'
+require 'swamp/setup'
 require 'swamp/interface'
 require 'swamp/evaluator'
 require 'swamp/base'

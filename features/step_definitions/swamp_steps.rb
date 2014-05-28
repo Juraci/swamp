@@ -18,6 +18,12 @@ When /^swamp scans that page$/ do
   swamp.scan(@url)
 end
 
+When /^I attempt to scan this page: "(\w+\.html)"$/ do |page|
+  path = File.join(File.dirname(__FILE__), '../support/page_examples/', page)
+  url = "file://#{path}"
+  swamp.scan(url)
+end
+
 Then /^(?:swamp|it) should output the following code snippets?$/ do |string|
   output.messages.should include(string)
 end
@@ -58,4 +64,8 @@ Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|
   else
     page.find(selector)[:style].should include("background-color: rgb(255, 0, 0)")
   end
+end
+
+When /^I attempt to change the scope to (?:"page"|"source") with the command$/ do |command|
+  swamp.setup_command(command)
 end

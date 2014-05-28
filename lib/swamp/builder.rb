@@ -3,15 +3,16 @@ module Swamp
 
     attr_reader :element
 
-    def initialize(element)
+    def initialize(element, setup)
       @element = element
+      @setup = setup
     end
 
     def build_snippet
       if element.name
-        [method_definition, element.method_signature, line_break, identation, prefix, element.accessor, line_break, method_end].join
+        [method_definition, element.method_signature, line_break, identation, scope, element.accessor, line_break, method_end].join
       else
-        [prefix, element.accessor].join
+        [scope, element.accessor].join
       end
     end
 
@@ -23,8 +24,8 @@ module Swamp
       "end"
     end
 
-    def prefix
-      "page."
+    def scope
+      [@setup.scope, "."].join
     end
 
     def identation

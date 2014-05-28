@@ -1,11 +1,13 @@
 require 'spec_helper'
 module Swamp
   describe Wrapper do
+    let(:setup) { setup = Swamp::Setup.new }
+
     describe "#explore" do
       it "fires up the browser to a given url" do
         url = "www.fakepage.com"
         meta_collection = []
-        wrapper = Swamp::Wrapper.new(meta_collection)
+        wrapper = Swamp::Wrapper.new(meta_collection, setup)
         wrapper.should_receive(:visit).with(url).and_return("")
         wrapper.explore(url)
       end
@@ -21,7 +23,7 @@ module Swamp
 
       it "delegates the responsibility of getting the elements for each element collection object" do
         meta_collection = [generic_element_collection]
-        wrapper = Swamp::Wrapper.new(meta_collection)
+        wrapper = Swamp::Wrapper.new(meta_collection, setup)
         meta_collection.each { |element_collection| element_collection.should_receive(:get).and_return([]) }
         wrapper.scan
       end
@@ -33,7 +35,7 @@ module Swamp
           fields.stub(:get).and_return([field])
 
           meta_collection = [fields]
-          wrapper = Swamp::Wrapper.new(meta_collection)
+          wrapper = Swamp::Wrapper.new(meta_collection, setup)
           wrapper.scan.should == ["def type_username(input)\n  page.fill_in(\"username\", with: input)\nend"]
         end
       end
@@ -45,7 +47,7 @@ module Swamp
           buttons.stub(:get).and_return([button])
 
           meta_collection = [buttons]
-          wrapper = Swamp::Wrapper.new(meta_collection)
+          wrapper = Swamp::Wrapper.new(meta_collection, setup)
           wrapper.scan.should == ["def log_in\n  page.click_button(\"log_in\")\nend"]
         end
       end
@@ -57,7 +59,7 @@ module Swamp
           input_buttons.stub(:get).and_return([input_button])
 
           meta_collection = [input_buttons]
-          wrapper = Swamp::Wrapper.new(meta_collection)
+          wrapper = Swamp::Wrapper.new(meta_collection, setup)
           wrapper.scan.should == ["def log_in\n  page.find(:css, \"input#u_0_b\").click\nend"]
         end
       end
@@ -69,7 +71,7 @@ module Swamp
           select_boxes.stub(:get).and_return([select_box])
 
           meta_collection = [select_boxes]
-          wrapper = Swamp::Wrapper.new(meta_collection)
+          wrapper = Swamp::Wrapper.new(meta_collection, setup)
           wrapper.scan.should == ["def select_month(option)\n  page.select(option, :from => \"month\")\nend"]
         end
       end
@@ -81,7 +83,7 @@ module Swamp
           links.stub(:get).and_return([link])
 
           meta_collection = [links]
-          wrapper = Swamp::Wrapper.new(meta_collection)
+          wrapper = Swamp::Wrapper.new(meta_collection, setup)
           wrapper.scan.should == ["def forgot_password\n  page.click_link(\"forgot-password\")\nend"]
         end
       end
@@ -95,7 +97,7 @@ module Swamp
           links.stub(:get).and_return([])
 
           meta_collection = [fields, buttons, input_buttons, select_boxes]
-          wrapper = Swamp::Wrapper.new(meta_collection)
+          wrapper = Swamp::Wrapper.new(meta_collection, setup)
           wrapper.scan.should == []
         end
       end

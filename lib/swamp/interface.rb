@@ -5,9 +5,10 @@ module Swamp
     INVALID_REQUEST_MESSAGE = ['Please enter a valid url!']
     NO_ELEMENTS_MESSAGE = ['No elements were detected']
 
-    def initialize(output, wrapper)
+    def initialize(output, wrapper, setup)
       @output = output
       @wrapper = wrapper
+      @setup = setup
     end
 
     def run
@@ -17,6 +18,11 @@ module Swamp
     def scan(input)
       @output.puts "Scanning, please wait..."
       messages = valid_request?(input) ? request(input) : INVALID_REQUEST_MESSAGE
+      present messages
+    end
+
+    def setup_command(input)
+      messages = @setup.handle_command(input)
       present messages
     end
 
