@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/Juraci/swamp.png?branch=master)](https://travis-ci.org/Juraci/swamp)
 
 Automatically generates the interfaces for the most common actions that a page can provide, 
-so you can use the generated methods to quickly create your page objects using [capybara](https://github.com/jnicklas/capybara) and [capybara-page-object](https://github.com/andyw8/capybara-page-object).
+so you can use the generated methods to quickly create your page objects using [capybara](https://github.com/jnicklas/capybara).
 
 ## How to install
 
@@ -42,22 +42,22 @@ https://accounts.google.com
 Scanning, please wait...
 
 def type_email(input)
-  source.fill_in("Email", with: input)
+  page.fill_in("Email", with: input)
 end
 def type_passwd(input)
-  source.fill_in("Passwd", with: input)
+  page.fill_in("Passwd", with: input)
 end
 def sign_in
-  source.find(:css, "#signIn").click
+  page.find(:css, "#signIn").click
 end
 def select_lang_chooser(option)
-  source.select(option, :from => "lang-chooser")
+  page.select(option, :from => "lang-chooser")
 end
 def link_forgot_passwd
-  source.click_link("link-forgot-passwd")
+  page.click_link("link-forgot-passwd")
 end
 def link_signup
-  source.click_link("link-signup")
+  page.click_link("link-signup")
 end
 ```
 (notice that the method names are a best guess and you are always free to change them)
@@ -66,32 +66,32 @@ end
 
 ```ruby
 module PageObjects
-  class SignIn < CapybaraPageObject::Page
+  class SignIn
   
     path ""
   
     def type_email(input)
-      source.fill_in("Email", with: input)
+      page.fill_in("Email", with: input)
     end
   
     def type_passwd(input)
-      source.fill_in("Passwd", with: input)
+      page.fill_in("Passwd", with: input)
     end
   
     def sign_in
-      source.find(:css, "#signIn").click
+      page.find(:css, "#signIn").click
     end
   
     def select_lang_chooser(option)
-      source.select(option, :from => "lang-chooser")
+      page.select(option, :from => "lang-chooser")
     end
   
     def link_forgot_passwd
-      source.click_link("link-forgot-passwd")
+      page.click_link("link-forgot-passwd")
     end
 
     def link_signup
-      source.click_link("link-signup")
+      page.click_link("link-signup")
     end
   end
 end
@@ -117,6 +117,14 @@ end
 * Wait for the new page to load
 * Then just go to the terminal and hit ENTER
 * Swamp will detect the new elements (if any) and will generate the code snippets the same way as before
+
+### Generating code snippets to use with [capybara-page-object](https://github.com/andyw8/capybara-page-object)
+
+You can easily change the scope from "page" to "source" by using the following commands:
+
+```shell
+:scope = source
+```
 
 ## How it works?
 
