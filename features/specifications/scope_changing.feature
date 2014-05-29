@@ -22,9 +22,6 @@ Feature: user changes the scope in the runtime
       | ":whatever = random" | "Invalid command"                |
       | ": = "               | "Invalid command"                |
 
-
-
-
   Scenario: User changes the scope from page to source
     Given that swamp is already running
     When I attempt to execute the command ":scope = source"

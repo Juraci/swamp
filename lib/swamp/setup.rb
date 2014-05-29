@@ -24,13 +24,13 @@ module Swamp
 
       @scope = value
 
-      success_message
+      [success_message]
     end
 
     private
 
     def success_message
-      ["Option #{command} setted to #{value}"]
+      ["Option", " ",  command, " ", "setted", " ", "to", " ", value].join
     end
 
     def command
