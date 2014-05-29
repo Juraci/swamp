@@ -120,10 +120,18 @@ end
 
 ### Generating code snippets to use with [capybara-page-object](https://github.com/andyw8/capybara-page-object)
 
-You can easily change the scope from "page" to "source" by using the following commands:
+You can easily change the scope from "page" to "source" by using the following command:
 
 ```shell
 :scope = source
+```
+
+then the code snippets will be generated with the "source" scope like this:
+
+```shell
+    def link_signup
+      source.click_link("link-signup")
+    end
 ```
 
 ## How it works?
