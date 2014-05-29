@@ -66,6 +66,6 @@ Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|
   end
 end
 
-When /^I attempt to change the scope to (?:"page"|"source") with the command$/ do |command|
+When /^I attempt to execute the command "(.*?)"$/ do |command|
   swamp.setup_command(command)
 end

@@ -2,6 +2,12 @@ module Swamp
   class Setup
     attr_reader :scope
 
+    COMMAND_LIST = {
+      ":scope" => ["source", "page"]
+    }
+
+    include Swamp::Assertions
+
     def initialize
       @scope = "page"
     end
@@ -9,19 +15,34 @@ module Swamp
     def handle_command(input)
       @input = input
       remove_white_spaces
-      result = split_between_key_and_value
-      @scope = result[1]
-      ["Option :scope setted to #{result[1]}"]
+
+      begin
+        assert { COMMAND_LIST[command] && COMMAND_LIST[command].include?(value) }
+      rescue ArgumentError
+        return ["Invalid command"]
+      end
+
+      @scope = value
+
+      success_message
     end
 
     private
 
-    def remove_white_spaces
-      @input = @input.gsub(/\s+/, "")
+    def success_message
+      ["Option #{command} setted to #{value}"]
     end
 
-    def split_between_key_and_value
-      @input.split("=")
+    def command
+      @input.split("=")[0]
+    end
+
+    def value
+      @input.split("=")[1]
+    end
+
+    def remove_white_spaces
+      @input = @input.gsub(/\s+/, "")
     end
 
   end

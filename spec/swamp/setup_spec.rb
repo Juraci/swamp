@@ -9,7 +9,7 @@ module Swamp
 
     describe "#handle_command" do
       context "when the command is valid" do
-        context "when the scope is changed" do
+        context "when the scope changes" do
           it "should set the option :scope to source" do
             setup.handle_command(":scope = source")
             setup.scope.should == "source"
@@ -28,7 +28,12 @@ module Swamp
             setup.handle_command(":scope = page").should == ["Option :scope setted to page"]
           end
         end
+      end
 
+      context "when the command is invalid" do
+        it "should return a message warning that the command is invalid" do
+          setup.handle_command(":scope = ").should == ["Invalid command"]
+        end
       end
     end
 
