@@ -14,6 +14,6 @@ Feature: user scans links in a page
     And it should output the following code snippet
       """
       def link_forgot_passwd
-        source.click_link("link-forgot-passwd")
+        page.click_link("link-forgot-passwd")
       end
       """

@@ -14,7 +14,7 @@ Feature: user scans submits in a page
     And it should output the following code snippet
       """
       def log_in
-        source.find(:css, "#u_0_b").click
+        page.find(:css, "#u_0_b").click
       end
       """
 
@@ -25,6 +25,6 @@ Feature: user scans submits in a page
     And it should output the following code snippet
       """
       def continue
-        source.find(:css, "input.button.g-button.g-button-submit[value='Continue']").click
+        page.find(:css, "input.button.g-button.g-button-submit[value='Continue']").click
       end
       """

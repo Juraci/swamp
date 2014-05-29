@@ -14,7 +14,7 @@ Feature: user scans fields in a page
     And it should output the following code snippet
       """
       def type_username(input)
-        source.fill_in("id_username", with: input)
+        page.fill_in("id_username", with: input)
       end
       """
 
@@ -25,7 +25,7 @@ Feature: user scans fields in a page
     Then it should output the following code snippet
       """
       def type_username(input)
-        source.fill_in("username", with: input)
+        page.fill_in("username", with: input)
       end
       """
 
@@ -36,7 +36,7 @@ Feature: user scans fields in a page
     Then it should output the following code snippet
       """
       def type_username(input)
-        source.fill_in("username", with: input)
+        page.fill_in("username", with: input)
       end
       """
 

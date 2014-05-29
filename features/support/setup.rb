@@ -12,6 +12,10 @@ def output
   @output ||= Output.new
 end
 
+def setup
+  @setup ||= Swamp::Setup.new
+end
+
 def buttons
   Swamp::Buttons.new
 end
@@ -34,9 +38,10 @@ end
 
 def wrapper
   meta_collection = [fields, buttons, input_buttons, select_boxes, links]
-  Swamp::Wrapper.new(meta_collection)
+  Swamp::Wrapper.new(meta_collection, setup)
 end
 
+
 def swamp
-  @swamp ||= Swamp::Interface.new(output, wrapper)
+  @swamp ||= Swamp::Interface.new(output, wrapper, setup)
 end

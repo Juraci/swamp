@@ -14,7 +14,7 @@ Feature: user scans select box elements in a page
     And it should output the following code snippet
       """
       def select_month(option)
-        source.select(option, :from => "month")
+        page.select(option, :from => "month")
       end
       """
 
@@ -25,7 +25,7 @@ Feature: user scans select box elements in a page
     And it should output the following code snippet
       """
       def select_region(option)
-        source.select(option, :from => "Region")
+        page.select(option, :from => "Region")
       end
       """
 
@@ -36,6 +36,6 @@ Feature: user scans select box elements in a page
     And it should output the following code snippet
       """
       def provider_select(option)
-        source.find(:css, "select.provider-select option[value='#{option}']").click
+        page.find(:css, "select.provider-select option[value='#{option}']").click
       end
       """

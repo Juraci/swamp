@@ -18,6 +18,12 @@ When /^swamp scans that page$/ do
   swamp.scan(@url)
 end
 
+When /^I attempt to scan this page: "(\w+\.html)"$/ do |page|
+  path = File.join(File.dirname(__FILE__), '../support/page_examples/', page)
+  url = "file://#{path}"
+  swamp.scan(url)
+end
+
 Then /^(?:swamp|it) should output the following code snippets?$/ do |string|
   output.messages.should include(string)
 end
@@ -27,6 +33,7 @@ Then /^swamp should not output any snippet$/ do
   output.messages.each do |m|
     m.should_not include("def")
     m.should_not include("source.")
+    m.should_not include("page.")
   end
 end
 
@@ -35,7 +42,7 @@ Given /^that swamp already have scanned a page$/ do
   path = File.join(File.dirname(__FILE__), '../support/page_examples/', "button.html")
   @url = "file://#{path}"
   swamp.scan(@url)
-  output.messages.should include("def sign_up\n  source.click_button(\"Sign Up\")\nend")
+  output.messages.should include("def sign_up\n  page.click_button(\"Sign Up\")\nend")
 end
 
 When /^I attempt to hit enter at the terminal$/ do
@@ -45,7 +52,7 @@ end
 Then /^swamp should scan the current page$/ do
   output.should have_at_most(5).messages
   output.messages[3].should == "Scanning, please wait..."
-  output.messages[4].should == "def sign_up\n  source.click_button(\"Sign Up\")\nend"
+  output.messages[4].should == "def sign_up\n  page.click_button(\"Sign Up\")\nend"
 end
 
 Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|
@@ -57,4 +64,8 @@ Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|
   else
     page.find(selector)[:style].should include("background-color: rgb(255, 0, 0)")
   end
+end
+
+When /^I attempt to execute the command "(.*?)"$/ do |command|
+  swamp.setup_command(command)
 end
