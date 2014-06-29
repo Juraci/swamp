@@ -22,7 +22,7 @@ module Swamp
 
       context "when it receives a valid command" do
         it "sends a message to the output telling that the command was successful" do
-          expect(output).to receive(:puts).with("Option :scope setted to source")
+          expect(output).to receive(:puts).with("Option :scope set to source")
           interface.setup_command(command)
         end
       end

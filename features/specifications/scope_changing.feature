@@ -11,13 +11,13 @@ Feature: user changes the scope in the runtime
 
     Examples: Happy paths
       | command           | expected                         |
-      | ":scope = source" | "Option :scope setted to source" |
-      | ":scope = page"   | "Option :scope setted to page"   |
+      | ":scope = source" | "Option :scope set to source" |
+      | ":scope = page"   | "Option :scope set to page"   |
 
     Examples: Corner cases
       | command              | expected                         |
-      | ":scope=source"      | "Option :scope setted to source" |
-      | ":scope =  page"     | "Option :scope setted to page"   |
+      | ":scope=source"      | "Option :scope set to source" |
+      | ":scope =  page"     | "Option :scope set to page"   |
       | ":scope = "          | "Invalid command"                |
       | ":whatever = random" | "Invalid command"                |
       | ": = "               | "Invalid command"                |

@@ -30,7 +30,7 @@ module Swamp
     private
 
     def success_message
-      ["Option", " ",  command, " ", "setted", " ", "to", " ", value].join
+      ["Option", " ",  command, " ", "set", " ", "to", " ", value].join
     end
 
     def command
