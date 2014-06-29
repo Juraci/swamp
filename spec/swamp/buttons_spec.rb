@@ -5,10 +5,10 @@ module Swamp
 
     it "delegates to capybara the responsibility to get the buttons" do
       element = {'id' => "u_0_2"}
-      element.stub(:text).and_return("Sign Up")
-      element.stub(:visible?).and_return(true)
-      buttons.page.stub(:execute_script).and_return(nil)
-      buttons.page.should_receive(:all).with('button').and_return([element])
+      allow(element).to receive(:text).and_return("Sign Up")
+      allow(element).to receive(:visible?).and_return(true)
+      allow(buttons.page).to receive(:execute_script).and_return(nil)
+      expect(buttons.page).to receive(:all).with('button').and_return([element])
       buttons.get
     end
 
@@ -17,21 +17,21 @@ module Swamp
         let(:element) { {'id' => "u_0_2"} }
 
         before(:each) do
-          element.stub(:visible?).and_return(true)
-          element.stub(:text).and_return("Sign Up")
-          buttons.page.stub(:all).with('button').and_return([element])
+          allow(element).to receive(:visible?).and_return(true)
+          allow(element).to receive(:text).and_return("Sign Up")
+          allow(buttons.page).to receive(:all).with('button').and_return([element])
         end
 
         it "highlights the element" do
-          buttons.page.should_receive(:execute_script).twice
+          expect(buttons.page).to receive(:execute_script).twice
           buttons.get
         end
 
         it "returns the element in the array using the text as both the name and the selector" do
-          buttons.page.stub(:execute_script).and_return(nil)
-          buttons.get.should have(1).button
-          buttons.get.each.first.name.should == "Sign Up"
-          buttons.get.each.first.selector.should == "Sign Up"
+          allow(buttons.page).to receive(:execute_script).and_return(nil)
+          expect(buttons.get.size).to eq(1)
+          expect(buttons.get.each.first.name).to eq("Sign Up")
+          expect(buttons.get.each.first.selector).to eq("Sign Up")
         end
       end
 
@@ -40,21 +40,21 @@ module Swamp
           let(:element) { {'id' => "search-button"} }
 
           before(:each) do
-            element.stub(:visible?).and_return(true)
-            element.stub(:text).and_return("")
-            buttons.page.stub(:all).with('button').and_return([element])
+            allow(element).to receive(:visible?).and_return(true)
+            allow(element).to receive(:text).and_return("")
+            allow(buttons.page).to receive(:all).with('button').and_return([element])
           end
 
           it "highlights the element" do
-            buttons.page.should_receive(:execute_script).twice
+            expect(buttons.page).to receive(:execute_script).twice
             buttons.get
           end
 
           it "returns the element in the array using the id as both the name and the selector" do
-            buttons.page.stub(:execute_script).and_return(nil)
-            buttons.get.should have(1).button
-            buttons.get.each.first.name.should == "search-button"
-            buttons.get.each.first.selector.should == "search-button"
+            allow(buttons.page).to receive(:execute_script).and_return(nil)
+            expect(buttons.get.size).to eq(1)
+            expect(buttons.get.each.first.name).to eq("search-button")
+            expect(buttons.get.each.first.selector).to eq("search-button")
           end
         end
 
@@ -63,21 +63,21 @@ module Swamp
             let(:element) { {'value' => "search-button", 'id' => ""} }
 
             before(:each) do
-              element.stub(:visible?).and_return(true)
-              element.stub(:text).and_return("")
-              buttons.page.stub(:all).with('button').and_return([element])
+              allow(element).to receive(:visible?).and_return(true)
+              allow(element).to receive(:text).and_return("")
+              allow(buttons.page).to receive(:all).with('button').and_return([element])
             end
 
             it "highlights the element" do
-              buttons.page.should_receive(:execute_script).twice
+              expect(buttons.page).to receive(:execute_script).twice
               buttons.get
             end
 
             it "returns the element in the array using the value as both the name and the selector" do
-              buttons.page.stub(:execute_script).and_return(nil)
-              buttons.get.should have(1).button
-              buttons.get.each.first.name.should == "search-button"
-              buttons.get.each.first.selector.should == "search-button"
+              allow(buttons.page).to receive(:execute_script).and_return(nil)
+              expect(buttons.get.size).to eq(1)
+              expect(buttons.get.each.first.name).to eq("search-button")
+              expect(buttons.get.each.first.selector).to eq("search-button")
             end
           end
 
@@ -85,14 +85,14 @@ module Swamp
             let(:element) { {'value' => "", 'id' => ""} }
 
             before(:each) do
-              element.stub(:visible?).and_return(true)
-              element.stub(:text).and_return("")
-              buttons.page.stub(:all).with('button').and_return([element])
+              allow(element).to receive(:visible?).and_return(true)
+              allow(element).to receive(:text).and_return("")
+              allow(buttons.page).to receive(:all).with('button').and_return([element])
             end
 
             it "returns an empty array" do
-              buttons.stub(:all).with('button').and_return([element])
-              buttons.get.should == []
+              allow(buttons).to receive(:all).with('button').and_return([element])
+              expect(buttons.get).to eq([])
             end
           end
         end
@@ -102,10 +102,10 @@ module Swamp
     context "when the button element is not visible" do
       it "returns an empty array" do
         element = {'id' => "u_0_2"}
-        element.stub(:text).and_return("Sign Up")
-        element.stub(:visible?).and_return(false)
-        buttons.page.stub(:all).with('button').and_return([element])
-        buttons.get.should == []
+        allow(element).to receive(:text).and_return("Sign Up")
+        allow(element).to receive(:visible?).and_return(false)
+        allow(buttons.page).to receive(:all).with('button').and_return([element])
+        expect(buttons.get).to eq([])
       end
     end
   end

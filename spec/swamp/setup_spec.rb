@@ -4,7 +4,7 @@ module Swamp
     let(:setup) { Swamp::Setup.new }
 
     it "should set the default options" do
-      setup.scope.should == "page"
+      expect(setup.scope).to eq("page")
     end
 
     describe "#handle_command" do
@@ -12,27 +12,27 @@ module Swamp
         context "when the scope changes" do
           it "should set the option :scope to source" do
             setup.handle_command(":scope = source")
-            setup.scope.should == "source"
+            expect(setup.scope).to eq("source")
           end
 
           it "should return a message confirming the scope was setted to source" do
-            setup.handle_command(":scope = source").should == ["Option :scope setted to source"]
+            expect(setup.handle_command(":scope = source")).to eq(["Option :scope setted to source"])
           end
 
           it "should set the option :scope to page" do
             setup.handle_command(":scope = page")
-            setup.scope.should == "page"
+            expect(setup.scope).to eq("page")
           end
 
           it "should return a message confirming the scope was setted to page" do
-            setup.handle_command(":scope = page").should == ["Option :scope setted to page"]
+            expect(setup.handle_command(":scope = page")).to eq(["Option :scope setted to page"])
           end
         end
       end
 
       context "when the command is invalid" do
         it "should return a message warning that the command is invalid" do
-          setup.handle_command(":scope = ").should == ["Invalid command"]
+          expect(setup.handle_command(":scope = ")).to eq(["Invalid command"])
         end
       end
     end

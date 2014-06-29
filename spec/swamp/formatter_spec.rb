@@ -7,42 +7,42 @@ module Swamp
       context "when the name has dashes" do
         it "replaces the dashes with unsderscores" do
           name = "user-name"
-          formatter.format(name).should == "user_name"
+          expect(formatter.format(name)).to eq("user_name")
         end
       end
 
       context "when the name has white spaces" do
         it "replaces the white spaces with underscores" do
           name = "user name"
-          formatter.format(name).should == "user_name"
+          expect(formatter.format(name)).to eq("user_name")
         end
       end
 
       context "when the name has underscore in the end" do
         it "removes the underscores from the end" do
           name = "user_name_"
-          formatter.format(name).should == "user_name"
+          expect(formatter.format(name)).to eq("user_name")
         end
       end
 
       context "when the name has uppercase characters" do
         it "converts the characters to lowercase" do
           name = "Sign up"
-          formatter.format(name).should == "sign_up"
+          expect(formatter.format(name)).to eq("sign_up")
         end
       end
 
       context "when the name has parentheses" do
         it "replace the parentheses with underscores" do
           name = "user_name(title)"
-          formatter.format(name).should == "user_name_title"
+          expect(formatter.format(name)).to eq("user_name_title")
         end
       end
 
       context "when the name has brackets" do
         it "replace the brackets with underscores" do
           name = "user_name[title]"
-          formatter.format(name).should == "user_name_title"
+          expect(formatter.format(name)).to eq("user_name_title")
         end
       end
     end
@@ -51,7 +51,7 @@ module Swamp
       context "when the class has white spaces" do
         it "replaces the white spaces with dots" do
           class_name = "button g-button g-button-submit"
-          formatter.format_class(class_name).should == "button.g-button.g-button-submit"
+          expect(formatter.format_class(class_name)).to eq("button.g-button.g-button-submit")
         end
       end
     end

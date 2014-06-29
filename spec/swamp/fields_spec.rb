@@ -5,9 +5,9 @@ module Swamp
 
     it "delegates to capybara the responsibility to get the fields" do
       element = {'name' => "username", 'type' => "text"}
-      element.stub(:visible?).and_return(true)
-      fields.page.stub(:execute_script).and_return(nil)
-      fields.page.should_receive(:all).with('input').and_return([element])
+      allow(element).to receive(:visible?).and_return(true)
+      allow(fields.page).to receive(:execute_script).and_return(nil)
+      expect(fields.page).to receive(:all).with('input').and_return([element])
       fields.get
     end
 
@@ -19,25 +19,25 @@ module Swamp
           let (:element) { {'name' => "username", 'type' => type, 'id' => "u_0_b"} }
 
           before(:each) do
-            element.stub(:visible?).and_return(true)
-            fields.page.stub(:all).with('input').and_return([element])
+            allow(element).to receive(:visible?).and_return(true)
+            allow(fields.page).to receive(:all).with('input').and_return([element])
           end
 
           it "highlights the element" do
-            fields.page.should_receive(:execute_script).twice
+            expect(fields.page).to receive(:execute_script).twice
             fields.get
           end
 
           it "returns the element in the array using the name as the method's name" do
-            fields.page.stub(:execute_script).and_return(nil)
-            fields.get.should have(1).field
-            fields.get.first.name.should == "username"
+            allow(fields.page).to receive(:execute_script).and_return(nil)
+            expect(fields.get.size).to eq(1)
+            expect(fields.get.first.name).to eq("username")
           end
 
           it "returns the element in the array using the id as the selector" do
-            fields.page.stub(:execute_script).and_return(nil)
-            fields.get.should have(1).field
-            fields.get.first.selector.should == "u_0_b"
+            allow(fields.page).to receive(:execute_script).and_return(nil)
+            expect(fields.get.size).to eq(1)
+            expect(fields.get.first.selector).to eq("u_0_b")
           end
         end
 
@@ -45,25 +45,25 @@ module Swamp
           let (:element) { {'type' => type, 'id' => "username"} }
 
           before(:each) do
-            element.stub(:visible?).and_return(true)
-            fields.page.stub(:all).with('input').and_return([element])
+            allow(element).to receive(:visible?).and_return(true)
+            allow(fields.page).to receive(:all).with('input').and_return([element])
           end
 
           it "highlights the element" do
-            fields.page.should_receive(:execute_script).twice
+            expect(fields.page).to receive(:execute_script).twice
             fields.get
           end
 
           it "returns the element in the array using the id as the method's name" do
-            fields.page.stub(:execute_script).and_return(nil)
-            fields.get.should have(1).field
-            fields.get.first.name.should == "username"
+            allow(fields.page).to receive(:execute_script).and_return(nil)
+            expect(fields.get.size).to eq(1)
+            expect(fields.get.first.name).to eq("username")
           end
 
           it "returns the element in the array using the id as the selector" do
-            fields.page.stub(:execute_script).and_return(nil)
-            fields.get.should have(1).field
-            fields.get.first.selector.should == "username"
+            allow(fields.page).to receive(:execute_script).and_return(nil)
+            expect(fields.get.size).to eq(1)
+            expect(fields.get.first.selector).to eq("username")
           end
         end
 
@@ -71,25 +71,25 @@ module Swamp
           let (:element) { {'name' => "username", 'type' => type} }
 
           before(:each) do
-            element.stub(:visible?).and_return(true)
-            fields.page.stub(:all).with('input').and_return([element])
+            allow(element).to receive(:visible?).and_return(true)
+            allow(fields.page).to receive(:all).with('input').and_return([element])
           end
 
           it "highlights the element" do
-            fields.page.should_receive(:execute_script).twice
+            expect(fields.page).to receive(:execute_script).twice
             fields.get
           end
 
           it "returns the element in the array using the name as the method's name" do
-            fields.page.stub(:execute_script).and_return(nil)
-            fields.get.should have(1).field
-            fields.get.first.name.should == "username"
+            allow(fields.page).to receive(:execute_script).and_return(nil)
+            expect(fields.get.size).to eq(1)
+            expect(fields.get.first.name).to eq("username")
           end
 
           it "returns the element in the array using the name as the selector" do
-            fields.page.stub(:execute_script).and_return(nil)
-            fields.get.should have(1).field
-            fields.get.first.selector.should == "username"
+            allow(fields.page).to receive(:execute_script).and_return(nil)
+            expect(fields.get.size).to eq(1)
+            expect(fields.get.first.selector).to eq("username")
           end
         end
       end
@@ -99,9 +99,9 @@ module Swamp
 
         it "returns an empty array" do
           element = {'name' => "username", 'type' => type}
-          element.stub(:visible?).and_return(true)
-          fields.page.stub(:all).with('input').and_return([element])
-          fields.get.should == []
+          allow(element).to receive(:visible?).and_return(true)
+          allow(fields.page).to receive(:all).with('input').and_return([element])
+          expect(fields.get).to eq([])
         end
       end
     end
@@ -109,9 +109,9 @@ module Swamp
     context "when the input element is not visible" do
       it "returns an empty array" do
         element = {'name' => "username", 'type' => "text"}
-        element.stub(:visible?).and_return(false)
-        fields.page.stub(:all).with('input').and_return([element])
-        fields.get.should == []
+        allow(element).to receive(:visible?).and_return(false)
+        allow(fields.page).to receive(:all).with('input').and_return([element])
+        expect(fields.get).to eq([])
       end
     end
   end

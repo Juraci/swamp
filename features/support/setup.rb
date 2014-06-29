@@ -8,8 +8,8 @@ class Output
   end
 end
 
-def output
-  @output ||= Output.new
+def fake_output
+  @fake_output ||= Output.new
 end
 
 def setup
@@ -43,5 +43,5 @@ end
 
 
 def swamp
-  @swamp ||= Swamp::Interface.new(output, wrapper, setup)
+  @swamp ||= Swamp::Interface.new(fake_output, wrapper, setup)
 end

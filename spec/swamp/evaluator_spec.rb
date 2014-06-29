@@ -9,7 +9,7 @@ module Swamp
           it "returns true" do
             input = "http://fakepage.com"
             evaluator = Swamp::Evaluator.new(input, wrapper)
-            evaluator.should be_valid_url
+            expect(evaluator).to be_valid_url
           end
         end
 
@@ -17,7 +17,7 @@ module Swamp
           it "returns true" do
             input = "https://fakepage.com"
             evaluator = Swamp::Evaluator.new(input, wrapper)
-            evaluator.should be_valid_url
+            expect(evaluator).to be_valid_url
           end
         end
 
@@ -25,7 +25,7 @@ module Swamp
           it "returns true" do
             input = "file://fakepage.html"
             evaluator = Swamp::Evaluator.new(input, wrapper)
-            evaluator.should be_valid_url
+            expect(evaluator).to be_valid_url
           end
         end
       end
@@ -35,7 +35,7 @@ module Swamp
           it "returns false" do
             input = "www.fakepage.com"
             evaluator = Swamp::Evaluator.new(input, wrapper)
-            evaluator.should_not be_valid_url
+            expect(evaluator).not_to be_valid_url
           end
         end
       end
@@ -45,29 +45,29 @@ module Swamp
       context "when the input is an enter keystroke" do
         context "when a page was already visited" do
           it "returns true" do
-            wrapper.stub(:page_visited).and_return(true)
+            allow(wrapper).to receive(:page_visited).and_return(true)
             input = "\n"
             evaluator = Swamp::Evaluator.new(input, wrapper)
-            evaluator.should be_refresh_command
+            expect(evaluator).to be_refresh_command
           end
         end
 
         context "when no page was yet visited" do
           it "returns false" do
-            wrapper.stub(:page_visited).and_return(false)
+            allow(wrapper).to receive(:page_visited).and_return(false)
             input = "\n"
             evaluator = Swamp::Evaluator.new(input, wrapper)
-            evaluator.should_not be_refresh_command
+            expect(evaluator).not_to be_refresh_command
           end
         end
       end
 
       context "when the input is not an enter keystroke" do
         it "returns false" do
-          wrapper.stub(:page_visited).and_return(true)
+          allow(wrapper).to receive(:page_visited).and_return(true)
           input = " "
           evaluator = Swamp::Evaluator.new(input, wrapper)
-          evaluator.should_not be_refresh_command
+          expect(evaluator).not_to be_refresh_command
         end
       end
     end

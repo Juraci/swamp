@@ -26,13 +26,13 @@ module Swamp
       present messages
     end
 
-    private
-
     def present(messages)
       messages.each do |message|
         @output.puts(message)
       end
     end
+
+    private
 
     def valid_request?(input)
       evaluator(input).valid_url? or evaluator(input).refresh_command?

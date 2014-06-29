@@ -8,7 +8,7 @@ module Swamp
         url = "www.fakepage.com"
         meta_collection = []
         wrapper = Swamp::Wrapper.new(meta_collection, setup)
-        wrapper.should_receive(:visit).with(url).and_return("")
+        expect(wrapper).to receive(:visit).with(url).and_return("")
         wrapper.explore(url)
       end
     end
@@ -24,7 +24,7 @@ module Swamp
       it "delegates the responsibility of getting the elements for each element collection object" do
         meta_collection = [generic_element_collection]
         wrapper = Swamp::Wrapper.new(meta_collection, setup)
-        meta_collection.each { |element_collection| element_collection.should_receive(:get).and_return([]) }
+        meta_collection.each { |element_collection| expect(element_collection).to receive(:get).and_return([]) }
         wrapper.scan
       end
 
@@ -32,11 +32,11 @@ module Swamp
         let(:field) { Swamp::Field.new("username", "username") }
 
         it "returns an array of formatted code snippets for fields" do
-          fields.stub(:get).and_return([field])
+          allow(fields).to receive(:get).and_return([field])
 
           meta_collection = [fields]
           wrapper = Swamp::Wrapper.new(meta_collection, setup)
-          wrapper.scan.should == ["def type_username(input)\n  page.fill_in(\"username\", with: input)\nend"]
+          expect(wrapper.scan).to eq(["def type_username(input)\n  page.fill_in(\"username\", with: input)\nend"])
         end
       end
 
@@ -44,11 +44,11 @@ module Swamp
         let(:button) { Swamp::Button.new("log_in", "log_in") }
 
         it "returns an array of formatted code snippets for buttons" do
-          buttons.stub(:get).and_return([button])
+          allow(buttons).to receive(:get).and_return([button])
 
           meta_collection = [buttons]
           wrapper = Swamp::Wrapper.new(meta_collection, setup)
-          wrapper.scan.should == ["def log_in\n  page.click_button(\"log_in\")\nend"]
+          expect(wrapper.scan).to eq(["def log_in\n  page.click_button(\"log_in\")\nend"])
         end
       end
 
@@ -56,11 +56,11 @@ module Swamp
         let(:input_button) { Swamp::InputButton.new("Log In", "input#u_0_b") }
 
         it "returns an array of formatted code snippets for input buttons" do
-          input_buttons.stub(:get).and_return([input_button])
+          allow(input_buttons).to receive(:get).and_return([input_button])
 
           meta_collection = [input_buttons]
           wrapper = Swamp::Wrapper.new(meta_collection, setup)
-          wrapper.scan.should == ["def log_in\n  page.find(:css, \"input#u_0_b\").click\nend"]
+          expect(wrapper.scan).to eq(["def log_in\n  page.find(:css, \"input#u_0_b\").click\nend"])
         end
       end
 
@@ -68,11 +68,11 @@ module Swamp
         let(:select_box) { Swamp::SelectBox.new("month", "month") }
 
         it "returns an array of formatted code snippets for select boxes" do
-          select_boxes.stub(:get).and_return([select_box])
+          allow(select_boxes).to receive(:get).and_return([select_box])
 
           meta_collection = [select_boxes]
           wrapper = Swamp::Wrapper.new(meta_collection, setup)
-          wrapper.scan.should == ["def select_month(option)\n  page.select(option, :from => \"month\")\nend"]
+          expect(wrapper.scan).to eq(["def select_month(option)\n  page.select(option, :from => \"month\")\nend"])
         end
       end
 
@@ -80,25 +80,25 @@ module Swamp
         let(:link) { Swamp::Link.new("forgot-password", "forgot-password") }
 
         it "returns an array of formatted code snippets for links" do
-          links.stub(:get).and_return([link])
+          allow(links).to receive(:get).and_return([link])
 
           meta_collection = [links]
           wrapper = Swamp::Wrapper.new(meta_collection, setup)
-          wrapper.scan.should == ["def forgot_password\n  page.click_link(\"forgot-password\")\nend"]
+          expect(wrapper.scan).to eq(["def forgot_password\n  page.click_link(\"forgot-password\")\nend"])
         end
       end
 
       context "when no elements were found" do
         it "returns an empty array" do
-          fields.stub(:get).and_return([])
-          buttons.stub(:get).and_return([])
-          input_buttons.stub(:get).and_return([])
-          select_boxes.stub(:get).and_return([])
-          links.stub(:get).and_return([])
+          allow(fields).to receive(:get).and_return([])
+          allow(buttons).to receive(:get).and_return([])
+          allow(input_buttons).to receive(:get).and_return([])
+          allow(select_boxes).to receive(:get).and_return([])
+          allow(links).to receive(:get).and_return([])
 
           meta_collection = [fields, buttons, input_buttons, select_boxes]
           wrapper = Swamp::Wrapper.new(meta_collection, setup)
-          wrapper.scan.should == []
+          expect(wrapper.scan).to eq([])
         end
       end
     end

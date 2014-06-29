@@ -6,7 +6,7 @@ When /^(?:I start it|that swamp is already running)$/  do
 end
 
 Then /^I should see "(.*?)"$/  do |outcome|
-  output.messages.should include(outcome)
+  fake_output.messages.should include(outcome)
 end
 
 Given /^I enter the url for this page: "(\w+\.html)"$/  do |page|
@@ -25,12 +25,12 @@ When /^I attempt to scan this page: "(\w+\.html)"$/ do |page|
 end
 
 Then /^(?:swamp|it) should output the following code snippets?$/ do |string|
-  output.messages.should include(string)
+  fake_output.messages.should include(string)
 end
 
 Then /^swamp should not output any snippet$/ do
-  output.should have_at_most(3).messages
-  output.messages.each do |m|
+  fake_output.messages.size.should <= 3
+  fake_output.messages.each do |m|
     m.should_not include("def")
     m.should_not include("source.")
     m.should_not include("page.")
@@ -42,7 +42,7 @@ Given /^that swamp already have scanned a page$/ do
   path = File.join(File.dirname(__FILE__), '../support/page_examples/', "button.html")
   @url = "file://#{path}"
   swamp.scan(@url)
-  output.messages.should include("def sign_up\n  page.click_button(\"Sign Up\")\nend")
+  fake_output.messages.should include("def sign_up\n  page.click_button(\"Sign Up\")\nend")
 end
 
 When /^I attempt to hit enter at the terminal$/ do
@@ -50,9 +50,9 @@ When /^I attempt to hit enter at the terminal$/ do
 end
 
 Then /^swamp should scan the current page$/ do
-  output.should have_at_most(5).messages
-  output.messages[3].should == "Scanning, please wait..."
-  output.messages[4].should == "def sign_up\n  page.click_button(\"Sign Up\")\nend"
+  fake_output.messages.size.should <= 5
+  fake_output.messages[3].should == "Scanning, please wait..."
+  fake_output.messages[4].should == "def sign_up\n  page.click_button(\"Sign Up\")\nend"
 end
 
 Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|

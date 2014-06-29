@@ -5,9 +5,9 @@ module Swamp
 
     it "delegates to capybara the responsibility to get the select box elements" do
       element = {'id' => "month", 'name' => "birthday_month"}
-      element.stub(:visible?).and_return(true)
-      select_boxes.page.stub(:execute_script).and_return(nil)
-      select_boxes.page.should_receive(:all).with('select').and_return([element])
+      allow(element).to receive(:visible?).and_return(true)
+      allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+      expect(select_boxes.page).to receive(:all).with('select').and_return([element])
       select_boxes.get
     end
 
@@ -16,25 +16,25 @@ module Swamp
         let(:element) { {'id' => "month", 'name' => "birthday_month"} }
 
         before(:each) do
-          element.stub(:visible?).and_return(true)
-          select_boxes.page.stub(:all).with('select').and_return([element])
+          allow(element).to receive(:visible?).and_return(true)
+          allow(select_boxes.page).to receive(:all).with('select').and_return([element])
         end
 
         it "highlights the element" do
-          select_boxes.page.should_receive(:execute_script).twice
+          expect(select_boxes.page).to receive(:execute_script).twice
           select_boxes.get
         end
 
         it "returns the element in the array using the id as the name" do
-          select_boxes.page.stub(:execute_script).and_return(nil)
-          select_boxes.get.should have(1).select_box
-          select_boxes.get.first.name.should == "month"
+          allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+          expect(select_boxes.get.size).to eq(1)
+          expect(select_boxes.get.first.name).to eq("month")
         end
 
         it "returns the element in the array using the id as the selector" do
-          select_boxes.page.stub(:execute_script).and_return(nil)
-          select_boxes.get.should have(1).select_box
-          select_boxes.get.first.selector.should == "month"
+          allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+          expect(select_boxes.get.size).to eq(1)
+          expect(select_boxes.get.first.selector).to eq("month")
         end
       end
 
@@ -42,25 +42,25 @@ module Swamp
         let(:element) { {'name' => "birthday_month"} }
 
         before(:each) do
-          element.stub(:visible?).and_return(true)
-          select_boxes.page.stub(:all).with('select').and_return([element])
+          allow(element).to receive(:visible?).and_return(true)
+          allow(select_boxes.page).to receive(:all).with('select').and_return([element])
         end
 
         it "highlights the element" do
-          select_boxes.page.should_receive(:execute_script).twice
+          expect(select_boxes.page).to receive(:execute_script).twice
           select_boxes.get
         end
 
         it "returns the element in the array using the name as the name" do
-          select_boxes.page.stub(:execute_script).and_return(nil)
-          select_boxes.get.should have(1).select_box
-          select_boxes.get.first.name.should == "birthday_month"
+          allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+          expect(select_boxes.get.size).to eq(1)
+          expect(select_boxes.get.first.name).to eq("birthday_month")
         end
 
         it "returns the element in the array using the name as the selector" do
-          select_boxes.page.stub(:execute_script).and_return(nil)
-          select_boxes.get.should have(1).select_box
-          select_boxes.get.first.selector.should == "birthday_month"
+          allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+          expect(select_boxes.get.size).to eq(1)
+          expect(select_boxes.get.first.selector).to eq("birthday_month")
         end
       end
 
@@ -68,25 +68,25 @@ module Swamp
         let(:element) { {'class' => "provider-select"} }
 
         before(:each) do
-          element.stub(:visible?).and_return(true)
-          select_boxes.page.stub(:all).with('select').and_return([element])
+          allow(element).to receive(:visible?).and_return(true)
+          allow(select_boxes.page).to receive(:all).with('select').and_return([element])
         end
 
         it "highlights the element" do
-          select_boxes.page.should_receive(:execute_script).twice
+          expect(select_boxes.page).to receive(:execute_script).twice
           select_boxes.get
         end
 
         it "returns the element in the array using the class as the name" do
-          select_boxes.page.stub(:execute_script).and_return(nil)
-          select_boxes.get.should have(1).select_box
-          select_boxes.get.first.name.should == "provider-select"
+          allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+          expect(select_boxes.get.size).to eq(1)
+          expect(select_boxes.get.first.name).to eq("provider-select")
         end
 
         it "returns the element in the array using the class as the selector" do
-          select_boxes.page.stub(:execute_script).and_return(nil)
-          select_boxes.get.should have(1).select_box
-          select_boxes.get.first.selector.should == "provider-select"
+          allow(select_boxes.page).to receive(:execute_script).and_return(nil)
+          expect(select_boxes.get.size).to eq(1)
+          expect(select_boxes.get.first.selector).to eq("provider-select")
         end
       end
     end
