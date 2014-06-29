@@ -15,8 +15,8 @@ module Swamp
             expect(setup.scope).to eq("source")
           end
 
-          it "should return a message confirming the scope was setted to source" do
-            expect(setup.handle_command(":scope = source")).to eq(["Option :scope setted to source"])
+          it "should return a message confirming the scope was set to source" do
+            expect(setup.handle_command(":scope = source")).to eq(["Option :scope set to source"])
           end
 
           it "should set the option :scope to page" do
@@ -24,8 +24,8 @@ module Swamp
             expect(setup.scope).to eq("page")
           end
 
-          it "should return a message confirming the scope was setted to page" do
-            expect(setup.handle_command(":scope = page")).to eq(["Option :scope setted to page"])
+          it "should return a message confirming the scope was set to page" do
+            expect(setup.handle_command(":scope = page")).to eq(["Option :scope set to page"])
           end
         end
       end
