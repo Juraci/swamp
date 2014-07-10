@@ -68,8 +68,6 @@ end
 module PageObjects
   class SignIn
   
-    path ""
-  
     def type_email(input)
       page.fill_in("Email", with: input)
     end
