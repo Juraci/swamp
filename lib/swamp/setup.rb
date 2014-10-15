@@ -27,6 +27,10 @@ module Swamp
       [success_message]
     end
 
+    def builder
+      @scope.builder
+    end
+
     private
 
     def success_message

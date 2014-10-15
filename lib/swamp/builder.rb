@@ -1,35 +1,32 @@
 module Swamp
   class Builder
 
-    attr_reader :element
-
-    def initialize(element, setup)
-      @element = element
-      @setup = setup
+    def initialize(base)
+      @base = base
     end
 
-    def build_snippet
+    def build_snippet(element)
       if element.name
-        [method_definition, element.method_signature, line_break, identation, scope, element.accessor, line_break, method_end].join
+        [method_definition, element.method_signature, line_break, identation, base, element.accessor, line_break, method_end].join
       else
-        [scope, element.accessor].join
+        [base, element.accessor].join
       end
     end
 
     def method_definition
-      "def "
+      'def '
     end
 
     def method_end
-      "end"
+      'end'
     end
 
-    def scope
-      [@setup.scope, "."].join
+    def base
+      [@base, '.'].join
     end
 
     def identation
-      "  "
+      '  '
     end
 
     def line_break

@@ -1,8 +1,8 @@
 module Swamp
   module Scope
     class Source
-      def to_s
-        'source'
+      def builder
+        @builder ||= Swamp::Builder.new('source')
       end
     end
   end

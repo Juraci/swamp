@@ -18,7 +18,7 @@ module Swamp
     def scan
       found_snippets = []
       @meta_collection.each do | element_collection |
-        found_snippets += element_collection.get.map { | element | Swamp::Builder.new(element, @setup).build_snippet }
+        found_snippets += element_collection.get.map { | element | @setup.builder.build_snippet(element) }
       end
       found_snippets
     end

@@ -1,8 +1,8 @@
 module Swamp
   module Scope
     class Page
-      def to_s
-        'page'
+      def builder
+        @builder ||= Swamp::Builder.new('page')
       end
     end
   end
