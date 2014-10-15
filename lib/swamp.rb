@@ -20,6 +20,9 @@ require 'swamp/select_box'
 require 'swamp/complex_select_box'
 require 'swamp/links'
 require 'swamp/link'
+require 'swamp/scopes/source'
+require 'swamp/scopes/page'
+require 'swamp/scopes/scope'
 
 module Swamp
 end

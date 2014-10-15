@@ -1,7 +1,7 @@
 require 'spec_helper'
 module Swamp
   describe Builder do
-    let(:setup) { setup = Swamp::Setup.new }
+    let(:setup) { Swamp::Setup.new }
 
     describe "#build_method" do
       context "when the type is field" do
