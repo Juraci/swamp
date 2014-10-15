@@ -1,15 +1,15 @@
-Given /^swamp is not yet running$/  do
+Given /^swamp is not yet running$/ do
 end
 
-When /^(?:I start it|that swamp is already running)$/  do
+When /^(?:I start it|that swamp is already running)$/ do
   swamp.run
 end
 
-Then /^I should see "(.*?)"$/  do |outcome|
+Then /^I should see "(.*?)"$/ do |outcome|
   fake_output.messages.should include(outcome)
 end
 
-Given /^I enter the url for this page: "(\w+\.html)"$/  do |page|
+Given /^I enter the url for this page: "(\w+\.html)"$/ do |page|
   path = File.join(File.dirname(__FILE__), '../support/page_examples/', page)
   @url = "file://#{path}"
 end
@@ -68,4 +68,14 @@ end
 
 When /^I attempt to execute the command "(.*?)"$/ do |command|
   swamp.setup_command(command)
+end
+
+Given(/^its using "(.*?)" scope$/) do |scope|
+  swamp.setup_command(":scope = #{scope}")
+end
+
+When(/^swamp scan this page: "(.*?)"$/) do |page|
+  path = File.join(File.dirname(__FILE__), '../support/page_examples/', page)
+  @url = "file://#{path}"
+  swamp.scan(@url)
 end

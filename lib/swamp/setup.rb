@@ -3,7 +3,7 @@ module Swamp
     attr_reader :scope
 
     COMMAND_LIST = {
-      ":scope" => ["source", "page"]
+      ":scope" => ["source", "page", "prism"]
     }
 
     include Swamp::Assertions

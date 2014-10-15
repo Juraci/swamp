@@ -30,8 +30,9 @@ module Swamp
         it "returns the element in the array using the text as both the name and the selector" do
           allow(buttons.page).to receive(:execute_script).and_return(nil)
           expect(buttons.get.size).to eq(1)
-          expect(buttons.get.each.first.name).to eq("Sign Up")
-          expect(buttons.get.each.first.selector).to eq("Sign Up")
+          expect(buttons.get.first.name).to eq("Sign Up")
+          expect(buttons.get.first.selector).to eq("Sign Up")
+          expect(buttons.get.first.prism_selector).to eq(%\'button', text: 'Sign Up'\)
         end
       end
 
@@ -53,8 +54,9 @@ module Swamp
           it "returns the element in the array using the id as both the name and the selector" do
             allow(buttons.page).to receive(:execute_script).and_return(nil)
             expect(buttons.get.size).to eq(1)
-            expect(buttons.get.each.first.name).to eq("search-button")
-            expect(buttons.get.each.first.selector).to eq("search-button")
+            expect(buttons.get.first.name).to eq("search-button")
+            expect(buttons.get.first.selector).to eq("search-button")
+            expect(buttons.get.first.prism_selector).to eq("'#search-button'")
           end
         end
 
@@ -78,6 +80,7 @@ module Swamp
               expect(buttons.get.size).to eq(1)
               expect(buttons.get.each.first.name).to eq("search-button")
               expect(buttons.get.each.first.selector).to eq("search-button")
+              expect(buttons.get.each.first.prism_selector).to eq(%\"[value='search-button']"\)
             end
           end
 

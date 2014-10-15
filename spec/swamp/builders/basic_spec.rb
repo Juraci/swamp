@@ -5,7 +5,7 @@ module Swamp
       let(:builder) { Swamp::Builders::Basic.new('page') }
       let(:source_builder) { Swamp::Builders::Basic.new('source') }
 
-      describe "#build_method" do
+      describe "#build_snippet" do
         context "when the type is field" do
           context "when the name and the selector are present" do
             it "returns the method's snippet" do
