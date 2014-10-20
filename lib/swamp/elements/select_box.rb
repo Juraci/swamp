@@ -1,5 +1,6 @@
 module Swamp
   class SelectBox < Element
+    attr_accessor :prism_selector
     def method_signature
       "select_#{format(@name)}(option)"
     end

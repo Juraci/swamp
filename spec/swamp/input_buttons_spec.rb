@@ -61,6 +61,7 @@ module Swamp
           allow(input_buttons.page).to receive(:execute_script).and_return(nil)
           expect(input_buttons.get.size).to eq(1)
           expect(input_buttons.get.first.selector).to eq("input.btn.without.id[value='Log In']")
+          expect(input_buttons.get.first.prism_selector).to eq(%\"input.btn.without.id[value='Log In']"\)
         end
       end
     end

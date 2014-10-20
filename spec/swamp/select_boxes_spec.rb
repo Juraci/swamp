@@ -35,6 +35,7 @@ module Swamp
           allow(select_boxes.page).to receive(:execute_script).and_return(nil)
           expect(select_boxes.get.size).to eq(1)
           expect(select_boxes.get.first.selector).to eq("month")
+          expect(select_boxes.get.first.prism_selector).to eq("'#month'")
         end
       end
 
@@ -61,6 +62,7 @@ module Swamp
           allow(select_boxes.page).to receive(:execute_script).and_return(nil)
           expect(select_boxes.get.size).to eq(1)
           expect(select_boxes.get.first.selector).to eq("birthday_month")
+          expect(select_boxes.get.first.prism_selector).to eq(%\"select[name='birthday_month']"\)
         end
       end
 
@@ -87,6 +89,7 @@ module Swamp
           allow(select_boxes.page).to receive(:execute_script).and_return(nil)
           expect(select_boxes.get.size).to eq(1)
           expect(select_boxes.get.first.selector).to eq("provider-select")
+          expect(select_boxes.get.first.prism_selector).to eq("'select.provider-select'")
         end
       end
     end

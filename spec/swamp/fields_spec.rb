@@ -38,6 +38,7 @@ module Swamp
             allow(fields.page).to receive(:execute_script).and_return(nil)
             expect(fields.get.size).to eq(1)
             expect(fields.get.first.selector).to eq("u_0_b")
+            expect(fields.get.first.prism_selector).to eq("'#u_0_b'")
           end
         end
 
@@ -64,6 +65,7 @@ module Swamp
             allow(fields.page).to receive(:execute_script).and_return(nil)
             expect(fields.get.size).to eq(1)
             expect(fields.get.first.selector).to eq("username")
+            expect(fields.get.first.prism_selector).to eq("'#username'")
           end
         end
 
@@ -90,6 +92,7 @@ module Swamp
             allow(fields.page).to receive(:execute_script).and_return(nil)
             expect(fields.get.size).to eq(1)
             expect(fields.get.first.selector).to eq("username")
+            expect(fields.get.first.prism_selector).to eq(%/'input[name="username"]'/)
           end
         end
       end

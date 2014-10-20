@@ -35,6 +35,7 @@ module Swamp
           allow(links.page).to receive(:execute_script).and_return(nil)
           expect(links.get.size).to eq(1)
           expect(links.get.first.selector).to eq("forgot-password")
+          expect(links.get.first.prism_selector).to eq("'#forgot-password'")
         end
       end
     end

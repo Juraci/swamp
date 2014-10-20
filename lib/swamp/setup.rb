@@ -3,13 +3,13 @@ module Swamp
     attr_reader :scope
 
     COMMAND_LIST = {
-      ":scope" => ["source", "page"]
+      ":scope" => ["source", "page", "prism"]
     }
 
     include Swamp::Assertions
 
     def initialize
-      @scope = "page"
+      @scope = Swamp::Scope.from_value('page')
     end
 
     def handle_command(input)
@@ -22,9 +22,13 @@ module Swamp
         return ["Invalid command"]
       end
 
-      @scope = value
+      @scope = Swamp::Scope.from_value(value)
 
       [success_message]
+    end
+
+    def builder
+      @scope.builder
     end
 
     private
