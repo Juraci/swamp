@@ -106,15 +106,20 @@ When /^I attempt to sign in with valid credentials/ do
 end
 ```
 
-### Dynamically detecting elements
+### Generating code snippets to use with [SitePrism](https://github.com/natritmeyer/site_prism)
 
-* You can navigate in the browser that swamp opens 
-* Lets say you need to log in to have access to some page 
-* Just enter the url for this page
-* Do the login procedure in the oppened browser manually
-* Wait for the new page to load
-* Then just go to the terminal and hit ENTER
-* Swamp will detect the new elements (if any) and will generate the code snippets the same way as before
+You can easily change the scope from "page" to "prism" by using the following command:
+
+```shell
+:scope = prism
+```
+
+then the code snippets will be generated in the SitePrism fromat:
+
+```shell
+element :sign_up, 'button', text: 'Sign Up'
+```
+
 
 ### Generating code snippets to use with [capybara-page-object](https://github.com/andyw8/capybara-page-object)
 
@@ -131,6 +136,17 @@ then the code snippets will be generated with the "source" scope like this:
       source.click_link("link-signup")
     end
 ```
+
+### Dynamically detecting elements
+
+You can navigate in the browser that swamp opens. Lets say a page that you want to scan requires login, then just do the following:
+
+* Enter the url for this page on swamp and wait for the page to load
+* Do the login procedure in the oppened browser manually
+* Wait for the new page to load
+* Then just go to the terminal and hit ENTER
+* Swamp will detect the new elements (if any) and will generate the code snippets the same way as before
+
 
 ## How it works?
 
