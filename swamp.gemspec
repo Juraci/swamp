@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["juraci.vieira@gmail.com"]
   spec.description   = "Automatically generates the methods and selectors to help on faster page-object creation using capybara"
   spec.summary       = "Swamp, where capybaras belong"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/Juraci/swamp"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -18,16 +18,16 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "capybara"
-  spec.add_dependency "selenium-webdriver"
+  spec.add_dependency "capybara", '~> 2.4'
+  spec.add_dependency "selenium-webdriver", '~> 2.43'
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "cucumber"
-  spec.add_development_dependency "json"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-nav"
-  spec.add_development_dependency "guard"
-  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "bundler", '~> 1.6'
+  spec.add_development_dependency "rake", '~> 10.3'
+  spec.add_development_dependency "rspec", '~> 3'
+  spec.add_development_dependency "cucumber", '~> 1.3'
+  spec.add_development_dependency "json", '~> 1.8'
+  spec.add_development_dependency "pry", '~> 0.9'
+  spec.add_development_dependency "pry-nav", '~> 0.2'
+  spec.add_development_dependency "guard", '~> 2.6'
+  spec.add_development_dependency "guard-rspec", '~> 4.3'
 end
