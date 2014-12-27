@@ -18,6 +18,7 @@ module Swamp
         'def '
       end
 
+
       def method_end
         'end'
       end

@@ -13,7 +13,7 @@ wrapper = Swamp::Wrapper.new(meta_collection, setup)
 swamp = Swamp::Interface.new(STDOUT, wrapper, setup)
 swamp.run
 
-while input == gets
+while input = gets
   if input.chomp == 'exit'
     exit
   elsif input[0] == ':'
