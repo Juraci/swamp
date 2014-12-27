@@ -68,7 +68,7 @@ module Swamp
       elsif mode == :xpath
         page.execute_script %-document.evaluate("#{selector}", document, null, 9, null).singleNodeValue.style.borderColor='#{color}';- rescue false
       else
-        fail "Mode #{mode} not found"
+        raise "Mode #{mode} not found"
       end
     end
 
