@@ -6,7 +6,7 @@ When /^(?:I start it|that swamp is already running)$/ do
 end
 
 Then /^I should see "(.*?)"$/ do |outcome|
-  fake_output.messages.should include(outcome)
+  expect(fake_output.messages).to include(outcome)
 end
 
 Given /^I enter the url for this page: "(\w+\.html)"$/ do |page|
@@ -25,15 +25,15 @@ When /^I attempt to scan this page: "(\w+\.html)"$/ do |page|
 end
 
 Then /^(?:swamp|it) should output the following code snippets?$/ do |string|
-  fake_output.messages.should include(string)
+  expect(fake_output.messages).to include(string)
 end
 
 Then /^swamp should not output any snippet$/ do
-  fake_output.messages.size.should <= 3
+  expect(fake_output.messages.size).to be <= 3
   fake_output.messages.each do |m|
-    m.should_not include("def")
-    m.should_not include("source.")
-    m.should_not include("page.")
+    expect(m).not_to include("def")
+    expect(m).not_to include("source.")
+    expect(m).not_to include("page.")
   end
 end
 
@@ -42,7 +42,7 @@ Given /^that swamp already have scanned a page$/ do
   path = File.join(File.dirname(__FILE__), '../support/page_examples/', "button.html")
   @url = "file://#{path}"
   swamp.scan(@url)
-  fake_output.messages.should include("def sign_up\n  page.click_button(\"Sign Up\")\nend")
+  expect(fake_output.messages).to include("def sign_up\n  page.click_button(\"Sign Up\")\nend")
 end
 
 When /^I attempt to hit enter at the terminal$/ do
@@ -50,19 +50,19 @@ When /^I attempt to hit enter at the terminal$/ do
 end
 
 Then /^swamp should scan the current page$/ do
-  fake_output.messages.size.should <= 5
-  fake_output.messages[3].should == "Scanning, please wait..."
-  fake_output.messages[4].should == "def sign_up\n  page.click_button(\"Sign Up\")\nend"
+  expect(fake_output.messages.size).to be <= 5
+  expect(fake_output.messages[3]).to eq "Scanning, please wait..."
+  expect(fake_output.messages[4]).to eq "def sign_up\n  page.click_button(\"Sign Up\")\nend"
 end
 
 Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|
   page = Capybara.current_session
-  page.should have_css "#{selector}[style]"
+  expect(page).to have_css "#{selector}[style]"
   if mode == "element"
-    page.find(selector)[:style].should include("border-width: 3px")
-    page.find(selector)[:style].should include("border-color: rgb(255, 0, 0)")
+    expect(page.find(selector)[:style]).to include("border-width: 3px")
+    expect(page.find(selector)[:style]).to include("border-color: rgb(255, 0, 0)")
   else
-    page.find(selector)[:style].should include("background-color: rgb(255, 0, 0)")
+    expect(page.find(selector)[:style]).to include("background-color: rgb(255, 0, 0)")
   end
 end
 
