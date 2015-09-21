@@ -11,6 +11,6 @@ Feature: User chooses the source scope
     Then swamp should output the following code snippet
       """
       def sign_up
-        source.click_button("Sign Up")
+        source.click_button("u_0_2")
       end
       """

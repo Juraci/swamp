@@ -7,14 +7,14 @@ Feature: user scans buttons in a page
   Background: swamp is running
     Given that swamp is already running
 
-  Scenario: A button that has text
+  Scenario: A button that has text and id
     Given I enter the url for this page: "button.html"
     When swamp scans that page
     Then swamp should highlight this element: "button"
     And it should output the following code snippet
       """
       def sign_up
-        page.click_button("Sign Up")
+        page.click_button("u_0_2")
       end
       """
 

@@ -12,7 +12,7 @@ Feature: User chooses the prism scope
     When swamp scan this page: "button.html"
     Then it should output the following code snippet
     """
-    element :sign_up, 'button', text: 'Sign Up'
+    element :sign_up, '#u_0_2'
     """
 
   Scenario: Scanning a button that doesn't has text but has id

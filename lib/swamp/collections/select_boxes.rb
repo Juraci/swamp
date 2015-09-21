@@ -10,7 +10,7 @@ module Swamp
             select_box.prism_selector = "'##{element['id']}'"
             elements << select_box
           elsif has_name?(element)
-            shine %/select[name='#{element["name"]}']/
+            shine %/select[name="#{element["name"]}"]/
             select_box = Swamp::SelectBox.new(element["name"], element["name"])
             select_box.prism_selector = %\"select[name='#{element['name']}']"\
             elements << select_box

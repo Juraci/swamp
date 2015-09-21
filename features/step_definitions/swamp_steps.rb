@@ -42,7 +42,7 @@ Given /^that swamp already have scanned a page$/ do
   path = File.join(File.dirname(__FILE__), '../support/page_examples/', "button.html")
   @url = "file://#{path}"
   swamp.scan(@url)
-  expect(fake_output.messages).to include("def sign_up\n  page.click_button(\"Sign Up\")\nend")
+  expect(fake_output.messages).to include("def sign_up\n  page.click_button(\"u_0_2\")\nend")
 end
 
 When /^I attempt to hit enter at the terminal$/ do

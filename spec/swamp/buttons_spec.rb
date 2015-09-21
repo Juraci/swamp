@@ -31,8 +31,8 @@ module Swamp
           allow(buttons.page).to receive(:execute_script).and_return(nil)
           expect(buttons.get.size).to eq(1)
           expect(buttons.get.first.name).to eq("Sign Up")
-          expect(buttons.get.first.selector).to eq("Sign Up")
-          expect(buttons.get.first.prism_selector).to eq(%\'button', text: 'Sign Up'\)
+          expect(buttons.get.first.selector).to eq("u_0_2")
+          expect(buttons.get.first.prism_selector).to eq("'#u_0_2'")
         end
       end
 
