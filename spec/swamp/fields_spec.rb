@@ -24,7 +24,7 @@ module Swamp
           end
 
           it "highlights the element" do
-            expect(fields.page).to receive(:execute_script).twice
+            expect(fields.page).to receive(:execute_script).once
             fields.get
           end
 
@@ -51,7 +51,7 @@ module Swamp
           end
 
           it "highlights the element" do
-            expect(fields.page).to receive(:execute_script).twice
+            expect(fields.page).to receive(:execute_script).once
             fields.get
           end
 
@@ -78,7 +78,7 @@ module Swamp
           end
 
           it "highlights the element" do
-            expect(fields.page).to receive(:execute_script).twice
+            expect(fields.page).to receive(:execute_script).once
             fields.get
           end
 

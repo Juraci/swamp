@@ -52,15 +52,15 @@ end
 Then /^swamp should scan the current page$/ do
   expect(fake_output.messages.size).to be <= 5
   expect(fake_output.messages[3]).to eq "Scanning, please wait..."
-  expect(fake_output.messages[4]).to eq "def sign_up\n  page.click_button(\"Sign Up\")\nend"
+  expect(fake_output.messages[4]).to eq "def sign_up\n  page.click_button(\"u_0_2\")\nend"
 end
 
 Then /^swamp should highlight this (element|link): "(.+)"$/ do |mode, selector|
   page = Capybara.current_session
   expect(page).to have_css "#{selector}[style]"
   if mode == "element"
-    expect(page.find(selector)[:style]).to include("border-width: 3px")
-    expect(page.find(selector)[:style]).to include("border-color: rgb(255, 0, 0)")
+    expect(page.find(selector)[:style]).to include("box-shadow: 0px 0px 15px rgb(81, 250, 200)")
+    expect(page.find(selector)[:style]).to include("border: 1px solid rgb(81, 250, 200)")
   else
     expect(page.find(selector)[:style]).to include("background-color: rgb(255, 0, 0)")
   end

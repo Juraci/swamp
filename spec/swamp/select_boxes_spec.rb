@@ -21,7 +21,7 @@ module Swamp
         end
 
         it "highlights the element" do
-          expect(select_boxes.page).to receive(:execute_script).twice
+          expect(select_boxes.page).to receive(:execute_script).once
           select_boxes.get
         end
 
@@ -48,7 +48,7 @@ module Swamp
         end
 
         it "highlights the element" do
-          expect(select_boxes.page).to receive(:execute_script).twice
+          expect(select_boxes.page).to receive(:execute_script).once
           select_boxes.get
         end
 
@@ -75,7 +75,7 @@ module Swamp
         end
 
         it "highlights the element" do
-          expect(select_boxes.page).to receive(:execute_script).twice
+          expect(select_boxes.page).to receive(:execute_script).once
           select_boxes.get
         end
 
