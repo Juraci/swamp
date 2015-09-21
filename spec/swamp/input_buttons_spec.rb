@@ -7,7 +7,7 @@ module Swamp
       element = {'value' => "Log In", 'id' => "u_0_b"}
       allow(element).to receive(:visible?).and_return(true)
       allow(input_buttons.page).to receive(:execute_script).and_return(nil)
-      expect(input_buttons.page).to receive(:all).with('input[type="submit"]').and_return([element])
+      expect(input_buttons.page).to receive(:all).with('input[type="submit"],input[type="button"]').and_return([element])
       input_buttons.get
     end
 
@@ -17,7 +17,7 @@ module Swamp
 
         before(:each) do
           allow(element).to receive(:visible?).and_return(true)
-          allow(input_buttons.page).to receive(:all).with('input[type="submit"]').and_return([element])
+          allow(input_buttons.page).to receive(:all).with('input[type="submit"],input[type="button"]').and_return([element])
         end
 
         it "highlights the element" do
@@ -43,7 +43,7 @@ module Swamp
 
         before(:each) do
           allow(element).to receive(:visible?).and_return(true)
-          allow(input_buttons.page).to receive(:all).with('input[type="submit"]').and_return([element])
+          allow(input_buttons.page).to receive(:all).with('input[type="submit"],input[type="button"]').and_return([element])
         end
 
         it "highlights the element" do
@@ -70,7 +70,7 @@ module Swamp
       it "returns an empty array" do
         element = {'value' => "Log In", 'id' => "u_0_b"}
         allow(element).to receive(:visible?).and_return(false)
-        allow(input_buttons.page).to receive(:all).with('input[type="submit"]').and_return([element])
+        allow(input_buttons.page).to receive(:all).with('input[type="submit"],input[type="button"]').and_return([element])
         expect(input_buttons.get).to eq([])
       end
     end
