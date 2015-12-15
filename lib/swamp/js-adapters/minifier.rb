@@ -7,7 +7,9 @@ module JavaScript
     def minify
       minified_js = ''
       file = File.new(file_path, 'r')
-      file.each_line { |l| minified_js += l }
+      file.each_line do |l|
+        minified_js += l unless l.include?('module.exports')
+      end
       file.close
       minified_js = minified_js.gsub("\n", "")
       minified_js = minified_js.gsub("\"", "'")

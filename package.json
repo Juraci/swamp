@@ -1,0 +1,12 @@
+{
+  "name": "swamp",
+  "version": "0.0.1",
+  "repository": "github.com/Juraci/swamp",
+  "license": "GPL-1.0+",
+  "devDependencies": {
+    "jasmine": "^2.3.2"
+  },
+  "scripts": {
+      "test": "jasmine"
+  }
+}
