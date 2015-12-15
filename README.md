@@ -7,7 +7,7 @@ so you can use the generated methods to quickly create your page objects using [
 
 ## How to install
 
-It requires Ruby 1.9.3 or later and Firefox 24.0 or later. To install, type:
+It requires Ruby 2.0.0 or later and Firefox 24.0 or later. To install, type:
 
 ```bash
 gem install swamp
