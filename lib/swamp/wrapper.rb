@@ -10,7 +10,7 @@ module Swamp
 
     def explore(url)
       if !page_visited
-        visit url
+        visit url.gsub("\n", "")
         @page_visited = true
       end
     end
