@@ -1,4 +1,4 @@
-require 'capybara'
+require 'capybara/dsl'
 
 module Swamp
   class Base
